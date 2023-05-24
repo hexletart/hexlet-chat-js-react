@@ -4,6 +4,9 @@ install:
 start-frontend:
 	make -C frontend start
 
+lint-frontend:
+	make -C frontend lint
+
 start-backend:
 	npx start-server
 
