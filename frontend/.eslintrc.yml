@@ -34,4 +34,9 @@ rules:
   react/function-component-definition: [2, { "namedComponents": "arrow-function" }]
   testing-library/no-debug: 0
   react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
-
+  react/jsx-one-expression-per-line: off
+  functional/no-expression-statements: off
+  functional/no-conditional-statements: off
+  object-curly-newline: ["error", {
+        "ExportDeclaration": { "multiline": true, "minProperties": 5 }
+    }]
