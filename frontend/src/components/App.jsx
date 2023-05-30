@@ -1,24 +1,24 @@
-import { BrowserRouter, Routes, Route, useRoutes } from 'react-router-dom';
-import { PageOne } from './Pages';
-import MainPage from './MainPage';
+import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import React from 'react';
+import AuthorizationPage from './AuthorizationPage';
+import NotFoundPage from './NotFoundPage';
+import Frame from './Frame';
 
-function ProfilePage() {
-  // Get the userId param from the URL.
-  const userId = useRoutes();
-  console.log(userId, '!!!!!!!!!!!!!!!!!!!!!');
-  // ...
-}
+const App = () => {
+  const loginRoutes = ['/', '/login']
+    .map((path) => ({ path, element: <AuthorizationPage /> }));
+  return useRoutes([
+    { path: '/*', element: <NotFoundPage /> },
+    ...loginRoutes,
+  ]);
+};
 
-const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<MainPage />}>
-        <Route index element={<div>No page is selected.</div>} />
-        <Route path="one" element={<PageOne />} />
-        <Route path="two" element={<ProfilePage />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+const AppWrapper = () => (
+  <Frame>
+    <Router>
+      <App />
+    </Router>
+  </Frame>
 );
 
-export default App;
+export default AppWrapper;
