@@ -5,7 +5,7 @@ export default {
         appName: 'Моё первое приложение на Реакт',
       },
     },
-    authorizationPage: {
+    loginPage: {
       card: {
         body: {
           header: 'Войти',
@@ -24,7 +24,10 @@ export default {
             placeholder: 'Пароль',
           },
           submit: 'Войти',
-          required: 'Обязательно поле для заполнения',
+          warnings: {
+            required: 'Обязательно поле для заполнения',
+            authFailed: 'Неверные имя пользователя или пароль',
+          },
         },
         footer: {
           description: 'Нет аккаунта? ',

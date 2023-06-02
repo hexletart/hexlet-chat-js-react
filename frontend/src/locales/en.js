@@ -5,7 +5,7 @@ export default {
         appName: 'My first React App',
       },
     },
-    authorizationPage: {
+    loginPage: {
       card: {
         body: {
           header: 'Login',
@@ -24,7 +24,10 @@ export default {
             placeholder: 'Password',
           },
           submit: 'Sign in',
-          required: 'Required field to fill',
+          warnings: {
+            required: 'Required field to fill',
+            authFailed: 'Invalid username or password',
+          },
         },
         footer: {
           description: 'No account? ',
