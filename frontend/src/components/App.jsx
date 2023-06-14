@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthContext from '../contexts/index';
-import LoginPage from './LoginPage';
-import NotFoundPage from './NotFoundPage';
 import Frame from './Frame';
+import LoginPage from './pages/LoginPage';
+import NotFoundPage from './pages/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 
 const AuthProvider = ({ children }) => {
