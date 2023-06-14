@@ -5,4 +5,6 @@ start:
 	npm start
 
 lint:
-	npx eslint .
+	npx htmlhint public/
+	npx eslint src/
+	
