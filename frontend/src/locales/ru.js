@@ -1,6 +1,6 @@
 export default {
   translation: {
-    frame: {
+    appFrame: {
       navbar: {
         appName: 'Моё первое приложение на Реакт',
       },
@@ -13,6 +13,7 @@ export default {
             yup: {
               min: 'Ник не может быть короче 2 символов',
               max: 'Ник не может быть длиннее 30 символов',
+              required: 'Обязательно поле для заполнения',
             },
             placeholder: 'Ваш ник',
           },
@@ -20,12 +21,12 @@ export default {
             yup: {
               min: 'Пароль не может быть короче 4 символов',
               max: 'Пароль не может быть длиннее 20 символов',
+              required: 'Обязательно поле для заполнения',
             },
             placeholder: 'Пароль',
           },
           submit: 'Войти',
           warnings: {
-            required: 'Обязательно поле для заполнения',
             authFailed: 'Неверные имя пользователя или пароль',
           },
         },
@@ -35,10 +36,129 @@ export default {
         },
       },
     },
+    registrationPage: {},
     notFoundPage: {
       header: 'Страница не найдена',
       description: 'Но вы можете перейти',
       link: 'на главную страницу',
     },
+    chatPage: {
+      loadingChat: {},
+      failedChat: {},
+      authedChat: {
+        channels: {
+          blockName: 'Каналы',
+          menu: {},
+          modals: {
+            headers: {
+              adding: 'Добавить канал',
+              renaming: 'Переименовать канал',
+              removing: 'Удалить канал',
+            },
+            content: {
+              form: {
+                addingAndRenaming: {
+                  yup: {
+                    min: 'Название канала не может быть короче 3 символов',
+                    max: 'Название канала не может быть длиннее 20 символов',
+                    required: 'Обязательное поле',
+                  },
+                  placeholder: 'Введите название канала',
+                },
+              },
+              text: {
+                removing: 'Уверены?',
+              },
+            },
+            buttons: {
+              adding: {
+                buttonCancel: 'Отменить',
+                buttonSubmit: 'Добавить',
+              },
+              renaming: {
+                buttonCancel: 'Отменить',
+                buttonSubmit: 'Добавить',
+              },
+              removing: {
+                buttonCancel: 'Отменить',
+                buttonSubmit: 'Удалить',
+              },
+            },
+          },
+          buttons: {
+            channelMenu: {
+              renaming: 'Переименовать',
+              removing: 'Удалить',
+            },
+          },
+        },
+        messages: {},
+      },
+    },
   },
 };
+
+// {
+//   translation: {
+//     frame: {
+//       navbar: {
+//         appName: 'Моё первое приложение на Реакт',
+//       },
+//     },
+//     loginPage: {
+//       card: {
+//         body: {
+//           header: 'Войти',
+//           username: {
+//             yup: {
+//               min: 'Ник не может быть короче 2 символов',
+//               max: 'Ник не может быть длиннее 30 символов',
+//               required: 'Обязательно поле для заполнения',
+//             },
+//             placeholder: 'Ваш ник',
+//           },
+//           password: {
+//             yup: {
+//               min: 'Пароль не может быть короче 4 символов',
+//               max: 'Пароль не может быть длиннее 20 символов',
+//               required: 'Обязательно поле для заполнения',
+//             },
+//             placeholder: 'Пароль',
+//           },
+//           submit: 'Войти',
+//           warnings: {
+//             authFailed: 'Неверные имя пользователя или пароль',
+//           },
+//         },
+//         footer: {
+//           description: 'Нет аккаунта? ',
+//           link: 'Зарегестрироваться',
+//         },
+//       },
+//     },
+//     notFoundPage: {
+//       header: 'Страница не найдена',
+//       description: 'Но вы можете перейти',
+//       link: 'на главную страницу',
+//     },
+//     chatPage: {
+//       authedChat: {
+//         addChannelButton: {
+//           addChannelModal: {
+//             channelname: {
+//               yup: {
+//                 min: 'Название канала не может быть короче 3 символов',
+//                 max: 'Название канала не может быть длиннее 20 символов',
+//                 required: 'Обязательное поле',
+//               },
+//               placeholder: 'Введите название канала',
+//             },
+//             header: 'Добавить канал',
+//             buttonCancel: 'Отменить',
+//             buttonSubmit: 'Отправить',
+//           },
+//         },
+//       },
+//     },
+//   },
+// };
