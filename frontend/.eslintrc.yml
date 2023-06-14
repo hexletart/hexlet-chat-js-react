@@ -37,7 +37,9 @@ rules:
   react/jsx-one-expression-per-line: off
   functional/no-expression-statements: off
   functional/no-conditional-statements: off
+  functional/no-throw-statements: off
   react/jsx-props-no-spreading: off
+  react/jsx-wrap-multilines: off
   object-curly-newline: ["error", {
         "ExportDeclaration": { "multiline": true, "minProperties": 5 }
     }]
