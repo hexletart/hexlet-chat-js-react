@@ -10,8 +10,11 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.5",
     "formik": "^2.4.0",
+    "htmllint": "^0.8.0",
     "i18next": "^22.5.0",
+    "lodash": "^4.17.21",
     "lorem-ipsum": "^2.0.8",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
@@ -48,6 +51,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "sass": "^1.63.3"
   }
 }
