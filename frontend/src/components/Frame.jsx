@@ -7,7 +7,7 @@ const Frame = ({ children }) => {
     <div className="d-flex flex-column h-100 bg-light">
       <Navbar className="bg-success bg-gradient shadow">
         <Container>
-          <Navbar.Brand href="#">{t('frame.navbar.appName')}</Navbar.Brand>
+          <Navbar.Brand href="#">{t('appFrame.navbar.appName')}</Navbar.Brand>
         </Container>
       </Navbar>
       {children}
