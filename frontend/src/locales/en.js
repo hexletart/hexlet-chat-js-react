@@ -48,6 +48,12 @@ export default {
       authedChat: {
         channels: {
           blockName: 'Channels',
+          buttons: {
+            channelMenu: {
+              renaming: 'Rename',
+              removing: 'Delete',
+            },
+          },
           menu: {},
           modals: {
             headers: {
@@ -85,18 +91,43 @@ export default {
               },
             },
           },
-          buttons: {
-            channelMenu: {
-              renaming: 'Rename',
-              removing: 'Delete',
+          toasts: {
+            creating: {
+              fulfilled: 'Channel created',
+              rejected: 'An error occurred while creating the channel',
+            },
+            renaming: {
+              fulfilled: 'Channel renamed',
+              rejected: 'An error occurred while renaming the channel',
+            },
+            removing: {
+              fulfilled: 'Channel removed',
+              rejected: 'An error occurred while removing the channel',
             },
           },
         },
-        messages: {},
+        messages: {
+          counter: {
+            count_one: '{{count}} message',
+            count_other: '{{count}} messages',
+          },
+          form: {
+            input: {
+              placeholder: 'Input your message ...',
+              ariaLabel: 'New message',
+            },
+            button: {
+              srcreenReaderValue: 'Send',
+            },
+          },
+
+        },
       },
     },
   },
 };
+// chatPage.authedCj
+// chatPage.authedChat.messages.counter.count
 
 // {
 //   translation: {

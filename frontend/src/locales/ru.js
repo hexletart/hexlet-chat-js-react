@@ -48,6 +48,12 @@ export default {
       authedChat: {
         channels: {
           blockName: 'Каналы',
+          buttons: {
+            channelMenu: {
+              renaming: 'Переименовать',
+              removing: 'Удалить',
+            },
+          },
           menu: {},
           modals: {
             headers: {
@@ -85,14 +91,37 @@ export default {
               },
             },
           },
-          buttons: {
-            channelMenu: {
-              renaming: 'Переименовать',
-              removing: 'Удалить',
+          toasts: {
+            creating: {
+              fulfilled: 'Канал создан',
+              rejected: 'Возникла ошибка при создании канала',
+            },
+            renaming: {
+              fulfilled: 'Канал переименован',
+              rejected: 'Возникла ошибка при переименовании канала',
+            },
+            removing: {
+              fulfilled: 'Канал удален',
+              rejected: 'Возникала ошибка при удаление канала',
             },
           },
         },
-        messages: {},
+        messages: {
+          counter: {
+            count_one: '{{count}} сообщение',
+            count_few: '{{count}} сообщения',
+            count_many: '{{count}} сообщений',
+          },
+          form: {
+            input: {
+              placeholder: 'Введите сообщение ...',
+              ariaLabel: 'Новое сообщение',
+            },
+            button: {
+              srcreenReaderValue: 'Отправить',
+            },
+          },
+        },
       },
     },
   },
