@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
+import { normalize } from '../../tools.js';
 import routes from '../../routes.js';
 import { actions as channelsActions } from '../../slices/channelsSlice.js';
 import { actions as messagesActions } from '../../slices/messagesSlice.js';
@@ -17,8 +18,8 @@ const ChatPage = ({ tokenJSON }) => {
         .then((response) => {
           const { channels, messages, currentChannelId } = response.data;
           dispatch(channelsActions.addCurrentChannelId(currentChannelId));
-          dispatch(channelsActions.addChannels(channels));
-          dispatch(messagesActions.addMessages(messages));
+          dispatch(channelsActions.addChannels(normalize(channels)));
+          dispatch(messagesActions.addMessages(normalize(messages)));
           setLoadingStatus('idle');
         })
         .catch((error) => {
