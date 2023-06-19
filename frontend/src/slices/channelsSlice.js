@@ -11,7 +11,7 @@ const createChannel = createAsyncThunk(
   'channels/createChannel',
   async (channel) => {
     const { data } = await axios.post(routes.example, channel);
-    return data;
+    return data; // ?????????????????? Must the response be normalized from back-end or not?
   },
 );
 
@@ -19,7 +19,7 @@ const renameChannel = createAsyncThunk(
   'channels/renameChannel',
   async (channel) => {
     const { data } = await axios.post(routes.example, channel);
-    return data;
+    return data; // ?????????????????? Must the response be normalized from back-end or not?
   },
 );
 
@@ -43,63 +43,70 @@ const channelsAdapter = createEntityAdapter();
 
 const channelsSlice = createSlice({
   name: 'channels',
-  initialState: channelsAdapter.getInitialState({ loadingStatus: 'idle', error: null, currentChannelId: null }),
+  initialState: channelsAdapter.getInitialState({
+    loadingStatus: { type: null, status: null },
+    currentChannelId: null,
+    error: null,
+  }),
   reducers: {
     addChannels: channelsAdapter.addMany,
-    addCurrentChannelId: (state, { payload: { currentChannelId } }) => {
-      state.currentChannelId = currentChannelId;
+    addCurrentChannelId: (state, { payload }) => {
+      state.currentChannelId = payload;
     },
   },
   extraReducers: {
     [createChannel.pending]: (state) => {
-      state.loadingStatus = 'loading';
+      state.loadingStatus = { type: 'creating', status: 'pending' };
       state.error = null;
     },
     [createChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = 'failed';
+      state.loadingStatus = { type: 'creating', status: 'rejected' };
       state.error = error;
     },
     [createChannel.fulfilled]: (state, action) => {
-      state.loadingStatus = 'idle';
+      state.loadingStatus = { type: 'creating', status: 'fulfilled' };
       state.error = null;
       channelsAdapter.addOne(state, action);
     },
+
     [renameChannel.pending]: (state) => {
-      state.loadingStatus = 'loading';
+      state.loadingStatus = { type: 'renaming', status: 'pending' };
       state.error = null;
     },
     [renameChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = 'failed';
+      state.loadingStatus = { type: 'renaming', status: 'rejected' };
       state.error = error;
     },
     [renameChannel.fulfilled]: (state, action) => {
-      state.loadingStatus = 'idle';
+      state.loadingStatus = { type: 'renaming', status: 'fulfilled' };
       state.error = null;
       channelsAdapter.updateOne(state, action);
     },
+
     [removeChannel.pending]: (state) => {
-      state.loadingStatus = 'loading';
+      state.loadingStatus = { type: 'removing', status: 'pending' };
       state.error = null;
     },
     [removeChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = 'failed';
+      state.loadingStatus = { type: 'removing', status: 'rejected' };
       state.error = error;
     },
     [removeChannel.fulfilled]: (state, { payload: { id } }) => {
-      state.loadingStatus = 'idle';
+      state.loadingStatus = { type: 'removing', status: 'fulfilled' };
       state.error = null;
       channelsAdapter.removeOne(id);
     },
+
     [setActiveChannel.pending]: (state) => {
-      state.loadingStatus = 'loading';
+      state.loadingStatus = { type: 'settingActive', status: 'pending' };
       state.error = null;
     },
     [setActiveChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = 'failed';
+      state.loadingStatus = { type: 'settingActive', status: 'rejected' };
       state.error = error;
     },
     [setActiveChannel.fulfilled]: (state, { payload: { id } }) => {
-      state.loadingStatus = 'idle';
+      state.loadingStatus = { type: 'settingActive', status: 'fulfilled' };
       state.error = null;
       state.currentChannelId = id;
     },
