@@ -1,0 +1,15 @@
+.toast-animation {
+  animation: toast-animation 1s ease 0s 1 normal forwards;
+}
+
+@keyframes toast-animation {
+	0% {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
