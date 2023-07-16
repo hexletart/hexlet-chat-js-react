@@ -1,46 +1,39 @@
 /* eslint-disable no-param-reassign */
-// actions without dispaying
-
-import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
-// import routes from '../routes';
-const routes = { example: 'exampleValue' };
-
-const createMessage = createAsyncThunk(
-  'messages/createMessage',
-  async (message) => {
-    const response = await axios.get(routes.example, message);
-    return response.data;
-  },
-);
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 const messagesAdapter = createEntityAdapter();
 
 const messagesSlice = createSlice({
   name: 'messages',
-  initialState: messagesAdapter.getInitialState({ loadingStatus: 'idle', error: null }),
+  initialState: messagesAdapter.getInitialState({
+    loadingStatus: { type: null, status: null, channelId: null, id: null },
+    error: null,
+  }),
   reducers: {
-    addMessages: messagesAdapter.addMany,
-  },
-  extraReducers: {
-    [createMessage.pending]: (state) => {
-      state.loadingStatus = 'loading';
-      state.error = null;
+    // ---==< messagesAdding >==---
+    addedMessages: messagesAdapter.addMany,
+    sendMessageAdding: (state, { payload: { channelId } }) => {
+      console.log('in message adding');
+      state.loadingStatus = {
+        type: 'adding',
+        status: 'send',
+        channelId,
+        id: null,
+      };
     },
-    [createMessage.rejected]: (state, { error }) => {
-      state.loadingStatus = 'failed';
-      state.error = error;
-    },
-    [createMessage.fulfilled]: (state, action) => {
-      state.loadingStatus = 'idle';
-      state.error = null;
-      messagesAdapter.addOne(state, action);
+    addedMessage: (state, { payload }) => {
+      messagesAdapter.addOne(state, payload);
+      const { channelId, id } = payload;
+      state.loadingStatus = {
+        type: 'adding',
+        status: 'seccessed',
+        channelId,
+        id,
+      };
     },
   },
 });
 
 export const { actions } = messagesSlice;
-export { createMessage };
 export const selectors = messagesAdapter.getSelectors((state) => state.messages);
 export default messagesSlice.reducer;
