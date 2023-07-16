@@ -3,5 +3,5 @@ const apiPath = '/api/v1/';
 export default {
   loginPath: [apiPath, 'login'].join('/'),
   usersPath: [apiPath, 'data'].join('/'),
-  regPath: [apiPath, 'signup'].join('/'),
+  signingUpPath: [apiPath, 'signup'].join('/'),
 };
