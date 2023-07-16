@@ -5,13 +5,13 @@ export default {
         appName: 'My first React App',
       },
     },
-    loginPage: {
+    registrationPage: {
       card: {
         body: {
-          header: 'Login',
-          username: {
+          header: 'Registration',
+          userName: {
             yup: {
-              min: 'Nickname cannot be shorter than 2 characters',
+              min: 'Nickname cannot be shorter than 3 characters',
               max: 'Nickname cannot be longer than 30 characters',
               required: 'Required field to fill',
             },
@@ -19,16 +19,49 @@ export default {
           },
           password: {
             yup: {
-              min: 'Password cannot be shorter than 2 characters',
+              min: 'Password cannot be shorter than 4 characters',
+              max: 'Password cannot be longer than 20 characters',
+              required: 'Required field to fill',
+              confirmation: 'Passwords must match',
+            },
+            placeholder: 'Password',
+            placeholderWithConfirmation: 'Confirm password',
+          },
+          warnings: {
+            authFailed: 'This user already exists',
+          },
+          submit: 'Create',
+        },
+        footer: {
+          description: 'Already registered? ',
+          link: 'Log in',
+        },
+      },
+    },
+    loginPage: {
+      card: {
+        body: {
+          header: 'Login',
+          userName: {
+            yup: {
+              min: 'Nickname cannot be shorter than 3 characters',
+              max: 'Nickname cannot be longer than 30 characters',
+              required: 'Required field to fill',
+            },
+            placeholder: 'Your nickname',
+          },
+          password: {
+            yup: {
+              min: 'Password cannot be shorter than 4 characters',
               max: 'Password cannot be longer than 20 characters',
               required: 'Required field to fill',
             },
             placeholder: 'Password',
           },
-          submit: 'Sign in',
           warnings: {
             authFailed: 'Invalid username or password',
           },
+          submit: 'Sign in',
         },
         footer: {
           description: 'No account? ',
@@ -36,7 +69,6 @@ export default {
         },
       },
     },
-    registrationPage: {},
     notFoundPage: {
       header: 'Page not found',
       description: 'But you can switch',
@@ -55,56 +87,6 @@ export default {
             },
           },
           menu: {},
-          modals: {
-            headers: {
-              adding: 'Add channel',
-              renaming: 'Rename channel',
-              removing: 'Delete channel',
-            },
-            content: {
-              form: {
-                addingAndRenaming: {
-                  yup: {
-                    min: 'Channel name cannot be shorter than 3 characters',
-                    max: 'Channel name cannot be longer than 20 characters',
-                    required: 'Required field',
-                  },
-                  placeholder: 'Enter channel name',
-                },
-              },
-              text: {
-                removing: 'Are you shure?',
-              },
-            },
-            buttons: {
-              adding: {
-                buttonCancel: 'Cancel',
-                buttonSubmit: 'Add',
-              },
-              renaming: {
-                buttonCancel: 'Cancel',
-                buttonSubmit: 'Add',
-              },
-              removing: {
-                buttonCancel: 'Cancel',
-                buttonSubmit: 'Delete',
-              },
-            },
-          },
-          toasts: {
-            creating: {
-              fulfilled: 'Channel created',
-              rejected: 'An error occurred while creating the channel',
-            },
-            renaming: {
-              fulfilled: 'Channel renamed',
-              rejected: 'An error occurred while renaming the channel',
-            },
-            removing: {
-              fulfilled: 'Channel removed',
-              rejected: 'An error occurred while removing the channel',
-            },
-          },
         },
         messages: {
           counter: {
@@ -122,70 +104,58 @@ export default {
           },
 
         },
+        modals: {
+          headers: {
+            adding: 'Add channel',
+            renaming: 'Rename channel',
+            removing: 'Delete channel',
+          },
+          content: {
+            form: {
+              addingAndRenaming: {
+                yup: {
+                  min: 'Channel name cannot be shorter than 3 characters',
+                  max: 'Channel name cannot be longer than 20 characters',
+                  notOneOf: 'Channel name must be unique',
+                  required: 'Required field',
+                },
+                placeholder: 'Enter channel name',
+              },
+            },
+            text: {
+              removing: 'Are you shure?',
+            },
+          },
+          buttons: {
+            adding: {
+              buttonCancel: 'Cancel',
+              buttonSubmit: 'Add',
+            },
+            renaming: {
+              buttonCancel: 'Cancel',
+              buttonSubmit: 'Rename',
+            },
+            removing: {
+              buttonCancel: 'Cancel',
+              buttonSubmit: 'Delete',
+            },
+          },
+        },
+        toasts: {
+          creating: {
+            successed: 'Channel created',
+            rejected: 'An error occurred while creating the channel',
+          },
+          renaming: {
+            successed: 'Channel renamed',
+            rejected: 'An error occurred while renaming the channel',
+          },
+          removing: {
+            successed: 'Channel removed',
+            rejected: 'An error occurred while removing the channel',
+          },
+        },
       },
     },
   },
 };
-// chatPage.authedCj
-// chatPage.authedChat.messages.counter.count
-
-// {
-//   translation: {
-//     frame: {
-//       navbar: {
-//         appName: 'My first React App',
-//       },
-//     },
-//     loginPage: {
-//       card: {
-//         body: {
-//           header: 'Login',
-//           username: {
-//             yup: {
-//               min: 'Nickname cannot be shorter than 2 characters',
-//               max: 'Nickname cannot be longer than 30 characters',
-//               required: 'Required field to fill',
-//             },
-//             placeholder: 'Your nickname',
-//           },
-//           password: {
-//             yup: {
-//               min: 'Password cannot be shorter than 2 characters',
-//               max: 'Password cannot be longer than 20 characters',
-//               required: 'Required field to fill',
-//             },
-//             placeholder: 'Password',
-//           },
-//           submit: 'Sign in',
-//           warnings: {
-//             authFailed: 'Invalid username or password',
-//           },
-//         },
-//         footer: {
-//           description: 'No account? ',
-//           link: 'Register',
-//         },
-//       },
-//     },
-//     notFoundPage: {
-//       header: 'Page not found',
-//       description: 'But you can switch',
-//       link: 'to the main page',
-//     },
-//     chatPage: {
-//       authedChat: {
-//         addChannelButton: {
-//           test: 'hello!!!!',
-//           addChannelModal: {
-//             channelname: {
-
-//             },
-//             header: 'Add channel',
-//             buttonCancel: 'Cancel',
-//             buttonSubmit: 'Add',
-//           },
-//         },
-//       },
-//     },
-//   },
-// };
