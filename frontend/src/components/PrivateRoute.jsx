@@ -1,16 +1,17 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import ChatPage from './pages/ChatPage';
-
-const getAuthHeader = () => {
-  const token = JSON.parse(localStorage.getItem('userId'));
-  return token ? { Authorization: `Bearer ${token}` } : null;
-};
+import ChatPage from './pages/chat/ChatBase';
+import { getAuthHeader } from '../tools/auth.js';
+import useAuthHook from '../hooks/authHook';
+import paths from '../paths.js';
 
 const PrivateRoute = () => {
+  const auth = useAuthHook();
   const location = useLocation();
   const tokenJSON = getAuthHeader();
   return (
-    tokenJSON ? <ChatPage tokenJSON={tokenJSON} /> : <Navigate to="/login" state={{ from: location }} />
+    auth.loggedIn
+      ? <ChatPage tokenJSON={tokenJSON} />
+      : <Navigate to={paths.login} state={{ from: location }} />
   );
 };
 
