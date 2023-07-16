@@ -1,119 +1,80 @@
 /* eslint-disable no-param-reassign */
-// all actions must be dispayed
-
-import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
-
-import axios from 'axios';
-// import routes from '../routes';
-const routes = { example: 'exampleValue' };
-
-const createChannel = createAsyncThunk(
-  'channels/createChannel',
-  async (channel) => {
-    const { data } = await axios.post(routes.example, channel);
-    return data; // ?????????????????? Must the response be normalized from back-end or not?
-  },
-);
-
-const renameChannel = createAsyncThunk(
-  'channels/renameChannel',
-  async (channel) => {
-    const { data } = await axios.post(routes.example, channel);
-    return data; // ?????????????????? Must the response be normalized from back-end or not?
-  },
-);
-
-const removeChannel = createAsyncThunk(
-  'channels/removeChannel',
-  async ({ id }) => {
-    await axios.post(routes.example, id);
-    return id;
-  },
-);
-
-const setActiveChannel = createAsyncThunk(
-  'channel/setActiveChannel',
-  async ({ id }) => {
-    await axios.post(routes.example, id);
-    return id;
-  },
-);
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 const channelsAdapter = createEntityAdapter();
 
 const channelsSlice = createSlice({
   name: 'channels',
   initialState: channelsAdapter.getInitialState({
-    loadingStatus: { type: null, status: null },
+    loadingStatus: { type: null, status: null, id: null },
     currentChannelId: null,
-    error: null,
+    defaultChannelId: null,
+    // error: null,
   }),
   reducers: {
-    addChannels: channelsAdapter.addMany,
-    addCurrentChannelId: (state, { payload }) => {
-      state.currentChannelId = payload;
+    // ---==< settingDefaultChannelId >==---
+    addedDefaultChannelId: (state, { payload: { id } }) => {
+      state.defaultChannelId = id;
     },
-  },
-  extraReducers: {
-    [createChannel.pending]: (state) => {
-      state.loadingStatus = { type: 'creating', status: 'pending' };
-      state.error = null;
-    },
-    [createChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = { type: 'creating', status: 'rejected' };
-      state.error = error;
-    },
-    [createChannel.fulfilled]: (state, action) => {
-      state.loadingStatus = { type: 'creating', status: 'fulfilled' };
-      state.error = null;
-      channelsAdapter.addOne(state, action);
-    },
-
-    [renameChannel.pending]: (state) => {
-      state.loadingStatus = { type: 'renaming', status: 'pending' };
-      state.error = null;
-    },
-    [renameChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = { type: 'renaming', status: 'rejected' };
-      state.error = error;
-    },
-    [renameChannel.fulfilled]: (state, action) => {
-      state.loadingStatus = { type: 'renaming', status: 'fulfilled' };
-      state.error = null;
-      channelsAdapter.updateOne(state, action);
-    },
-
-    [removeChannel.pending]: (state) => {
-      state.loadingStatus = { type: 'removing', status: 'pending' };
-      state.error = null;
-    },
-    [removeChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = { type: 'removing', status: 'rejected' };
-      state.error = error;
-    },
-    [removeChannel.fulfilled]: (state, { payload: { id } }) => {
-      state.loadingStatus = { type: 'removing', status: 'fulfilled' };
-      state.error = null;
-      channelsAdapter.removeOne(id);
-    },
-
-    [setActiveChannel.pending]: (state) => {
-      state.loadingStatus = { type: 'settingActive', status: 'pending' };
-      state.error = null;
-    },
-    [setActiveChannel.rejected]: (state, { error }) => {
-      state.loadingStatus = { type: 'settingActive', status: 'rejected' };
-      state.error = error;
-    },
-    [setActiveChannel.fulfilled]: (state, { payload: { id } }) => {
-      state.loadingStatus = { type: 'settingActive', status: 'fulfilled' };
-      state.error = null;
+    // ---==< managingCurrentChannelId >==---
+    addedCurrentChannelId: (state, { payload: { id } }) => {
       state.currentChannelId = id;
+    },
+    setCurrentChannelId: (state, { payload: { id } }) => {
+      state.currentChannelId = id;
+    },
+    // ---==< channelsAdding >==---
+    addedChannels: channelsAdapter.addMany,
+    sendChannelAdding: (state) => {
+      state.loadingStatus = {
+        type: 'adding',
+        status: 'send',
+        id: null,
+      };
+    },
+    addedChannel: (state, { payload }) => {
+      channelsAdapter.addOne(state, payload);
+      state.loadingStatus = {
+        type: 'adding',
+        status: 'successed',
+        id: payload.id,
+      };
+    },
+    // ---==< channelsRenaming >==---
+    sendChannelRenaming: (state, { payload: { id } }) => {
+      state.loadingStatus = {
+        type: 'renaming',
+        status: 'send',
+        id,
+      };
+    },
+    renamedChannel: (state, { payload: { id, name } }) => {
+      channelsAdapter.updateOne(state, { id, changes: { name } });
+      state.loadingStatus = {
+        type: 'renaming',
+        status: 'successed',
+        id,
+      };
+    },
+    // ---==< channelsRemoving >==---
+    sendChannelRemoving: (state, { payload: { id } }) => {
+      state.loadingStatus = {
+        type: 'removing',
+        status: 'send',
+        id,
+      };
+    },
+    removedChannel: (state, { payload: { id } }) => {
+      channelsAdapter.removeOne(state, id);
+      state.loadingStatus = {
+        type: 'removing',
+        status: 'successed',
+        id,
+      };
     },
   },
 });
 
 export const { actions } = channelsSlice;
-export { createChannel, renameChannel, removeChannel };
 export const selectors = channelsAdapter.getSelectors((state) => state.channels);
 export default channelsSlice.reducer;
