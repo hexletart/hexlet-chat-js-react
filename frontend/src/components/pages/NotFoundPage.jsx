@@ -8,7 +8,7 @@ const NotFoundPage = () => {
       <Row className="justify-content-center align-content-center h-100">
         <Col xxl={6} md={8} xs={12}>
           <div className="text-center">
-            <Image alt={t('notFoundPage.header')} class="img-fluid h-25" src="../../notFoundPage.png" rounded />
+            <Image alt={t('notFoundPage.header')} className="img-fluid h-25" src="../../notFoundPage.png" rounded />
             <h1 className="h4 text-muted mt-2">{t('notFoundPage.header')}</h1>
             <p className="text-muted mb-0">{t('notFoundPage.description')}</p>
             <a className="text-success" href="/">{t('notFoundPage.link')}</a>
