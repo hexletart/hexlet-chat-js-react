@@ -34,6 +34,7 @@ const channelsSlice = createSlice({
     },
     addedChannel: (state, { payload }) => {
       channelsAdapter.addOne(state, payload);
+      state.currentChannelId = payload.id;
       state.loadingStatus = {
         type: 'adding',
         status: 'successed',
