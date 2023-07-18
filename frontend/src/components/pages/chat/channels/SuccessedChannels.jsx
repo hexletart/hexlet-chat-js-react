@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
 
+import useToastHook from '../../../../hooks/toastsHook.jsx';
 import getModal from '../modal/index.js';
 import ChannelsList from './additions/ChannelsList';
 import AddChannel from './additions/AddChannel';
@@ -22,14 +23,15 @@ const renderModal = ({
 
 const getToastNotification = (translator, type) => {
   const notifications = {
-    adding: translator('chatPage.authedChat.toasts.creating.successed'),
-    renaming: translator('chatPage.authedChat.toasts.renaming.successed'),
-    removing: translator('chatPage.authedChat.toasts.removing.successed'),
+    adding: translator('toasts.creating.successed'),
+    renaming: translator('toasts.renaming.successed'),
+    removing: translator('toasts.removing.successed'),
   };
   return notifications[type] ?? null;
 };
 
-const SuccessedChannels = ({ addToast }) => {
+const SuccessedChannels = () => {
+  const toasts = useToastHook();
   const { t } = useTranslation();
   const {
     entities: channels,
@@ -49,7 +51,7 @@ const SuccessedChannels = ({ addToast }) => {
   useEffect(() => {
     const notification = getToastNotification(t, channelsActionsType);
     if (channelsStatus === 'successed' && notification) {
-      addToast({ text: notification, type: channelsStatus });
+      toasts.addToast({ text: notification, type: channelsStatus });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelsStatus]);
