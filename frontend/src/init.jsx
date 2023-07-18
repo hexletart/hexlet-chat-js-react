@@ -13,7 +13,7 @@ const init = async () => {
     .use(initReactI18next)
     .init({
       resources,
-      fallbackLng: 'en',
+      fallbackLng: 'ru',
     });
 
   return (
