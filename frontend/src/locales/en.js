@@ -3,6 +3,9 @@ export default {
     appFrame: {
       navbar: {
         appName: 'My first React App',
+        buttons: {
+          output: 'Output',
+        },
       },
     },
     registrationPage: {
@@ -141,20 +144,20 @@ export default {
             },
           },
         },
-        toasts: {
-          creating: {
-            successed: 'Channel created',
-            rejected: 'An error occurred while creating the channel',
-          },
-          renaming: {
-            successed: 'Channel renamed',
-            rejected: 'An error occurred while renaming the channel',
-          },
-          removing: {
-            successed: 'Channel removed',
-            rejected: 'An error occurred while removing the channel',
-          },
-        },
+      },
+    },
+    toasts: {
+      creating: {
+        successed: 'Channel created',
+        rejected: 'An error occurred while creating the channel',
+      },
+      renaming: {
+        successed: 'Channel renamed',
+        rejected: 'An error occurred while renaming the channel',
+      },
+      removing: {
+        successed: 'Channel removed',
+        rejected: 'An error occurred while removing the channel',
       },
     },
   },

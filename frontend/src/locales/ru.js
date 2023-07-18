@@ -3,6 +3,9 @@ export default {
     appFrame: {
       navbar: {
         appName: 'Моё первое приложение на Реакт',
+        buttons: {
+          output: 'Выход',
+        },
       },
     },
     registrationPage: {
@@ -141,20 +144,20 @@ export default {
             },
           },
         },
-        toasts: {
-          creating: {
-            successed: 'Канал создан',
-            rejected: 'Возникла ошибка при создании канала',
-          },
-          renaming: {
-            successed: 'Канал переименован',
-            rejected: 'Возникла ошибка при переименовании канала',
-          },
-          removing: {
-            successed: 'Канал удален',
-            rejected: 'Возникала ошибка при удаление канала',
-          },
-        },
+      },
+    },
+    toasts: {
+      creating: {
+        successed: 'Канал создан',
+        rejected: 'Возникла ошибка при создании канала',
+      },
+      renaming: {
+        successed: 'Канал переименован',
+        rejected: 'Возникла ошибка при переименовании канала',
+      },
+      removing: {
+        successed: 'Канал удален',
+        rejected: 'Возникала ошибка при удаление канала',
       },
     },
   },
