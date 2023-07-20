@@ -5,7 +5,7 @@ const initialState = {
   isAuthed: false,
 };
 
-const messagesSlice = createSlice({
+const authedSlice = createSlice({
   name: 'authed',
   initialState,
   reducers: {
@@ -13,10 +13,11 @@ const messagesSlice = createSlice({
       state.isAuthed = true;
     },
     loggedOut: (state) => {
+      console.log('from loggedOut ???????????????????????');
       state.isAuthed = false;
     },
   },
 });
 
-export const { actions } = messagesSlice;
-export default messagesSlice.reducer;
+export const { actions } = authedSlice;
+export default authedSlice.reducer;
