@@ -17,14 +17,10 @@ const ChatPage = ({ tokenJSON }) => {
   const auth = useAuthHook();
   const { addToast } = useToastHook();
   const dispatch = useDispatch();
-  const [loadingStatus, setLoadingStatus] = useState({ status: 'loading', error: null });
+  const [loadingStatus, setLoadingStatus] = useState('loading');
 
   useEffect(() => {
     const fetchData = async () => {
-      const logout = () => {
-        dispatch(authedActions.loggedOut());
-        auth.logout();
-      };
       await axios.get(routes.usersPath, { headers: { ...tokenJSON } })
         .then((response) => {
           const { channels, messages, currentChannelId } = response.data;
@@ -33,23 +29,24 @@ const ChatPage = ({ tokenJSON }) => {
           dispatch(channelsActions.addedCurrentChannelId({ id: currentChannelId }));
           dispatch(channelsActions.addedChannels(normalize(channels)));
           dispatch(messagesActions.addedMessages(normalize(messages)));
-          setLoadingStatus({ status: 'successed', error: null });
+          setLoadingStatus('successed');
         })
         .catch((error) => {
-          setLoadingStatus({ status: 'failed', error: error.message });
           addToast({ type: 'failed', text: error.message });
-          logout();
+          dispatch(authedActions.loggedOut());
+          auth.logout();
         });
-      return () => {
-        logout();
-      };
     };
     fetchData();
+    return () => {
+      dispatch(channelsActions.resetState());
+      dispatch(messagesActions.resetState());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const ChannelsComponent = getChannelsComponent(loadingStatus.status);
-  const MessagesComponent = getMessagesComponent(loadingStatus.status);
+  const ChannelsComponent = getChannelsComponent(loadingStatus);
+  const MessagesComponent = getMessagesComponent(loadingStatus);
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
       <Row className="h-100 flex-md-row bg-white">
