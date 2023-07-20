@@ -5,10 +5,9 @@ export default (status) => {
   switch (status) {
     case 'successed':
       return SuccessedMessages;
-    case 'failed':
     case 'loading':
       return GettingMessages;
     default:
-      throw new Error(`${status} is unknown, please check messages getting`)
+      throw new Error(`${status} is unknown, please check messages getting`);
   }
 };
