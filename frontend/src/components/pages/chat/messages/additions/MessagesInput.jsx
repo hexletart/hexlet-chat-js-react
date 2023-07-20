@@ -11,7 +11,7 @@ const MessagesInput = ({ channelId, isBlocking }) => {
   const { t } = useTranslation();
   const inputEl = useRef();
   useEffect(() => {
-    inputEl.current.focus();
+    inputEl.current.select();
   }, []);
   const form = (
     <Formik
