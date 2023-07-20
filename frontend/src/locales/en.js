@@ -15,15 +15,15 @@ export default {
           userName: {
             yup: {
               min: 'Nickname cannot be shorter than 3 characters',
-              max: 'Nickname cannot be longer than 30 characters',
+              max: 'Nickname cannot be longer than 20 characters',
               required: 'Required field to fill',
             },
             placeholder: 'Your nickname',
           },
           password: {
             yup: {
-              min: 'Password cannot be shorter than 4 characters',
-              max: 'Password cannot be longer than 20 characters',
+              min: 'Password cannot be shorter than 6 characters',
+              max: 'Password cannot be longer than 30 characters',
               required: 'Required field to fill',
               confirmation: 'Passwords must match',
             },
@@ -41,22 +41,22 @@ export default {
         },
       },
     },
-    loginPage: {
+    authorizationPage: {
       card: {
         body: {
           header: 'Login',
           userName: {
             yup: {
               min: 'Nickname cannot be shorter than 3 characters',
-              max: 'Nickname cannot be longer than 30 characters',
+              max: 'Nickname cannot be longer than 20 characters',
               required: 'Required field to fill',
             },
             placeholder: 'Your nickname',
           },
           password: {
             yup: {
-              min: 'Password cannot be shorter than 4 characters',
-              max: 'Password cannot be longer than 20 characters',
+              min: 'Password cannot be shorter than 3 characters',
+              max: 'Password cannot be longer than 30 characters',
               required: 'Required field to fill',
             },
             placeholder: 'Password',

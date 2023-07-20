@@ -30,16 +30,16 @@ const RegistrationPage = () => {
   const loginSchema = Yup.object().shape({
     userName: Yup.string()
       .min(3, t('registrationPage.card.body.userName.yup.min'))
-      .max(30, t('registrationPage.card.body.userName.yup.max'))
+      .max(20, t('registrationPage.card.body.userName.yup.max'))
       .required(t('registrationPage.card.body.userName.yup.required')),
     password: Yup.string()
-      .min(4, t('registrationPage.card.body.password.yup.min'))
-      .max(20, t('registrationPage.card.body.password.yup.max'))
+      .min(6, t('registrationPage.card.body.password.yup.min'))
+      .max(30, t('registrationPage.card.body.password.yup.max'))
       .required(t('registrationPage.card.body.password.yup.required')),
     passwordConfirmation: Yup.string()
       .required(t('registrationPage.card.body.password.yup.required'))
-      .min(4, t('registrationPage.card.body.password.yup.min'))
-      .max(20, t('registrationPage.card.body.password.yup.max'))
+      .min(6, t('registrationPage.card.body.password.yup.min'))
+      .max(30, t('registrationPage.card.body.password.yup.max'))
       .oneOf([Yup.ref('password')], t('registrationPage.card.body.password.yup.confirmation')),
   });
 

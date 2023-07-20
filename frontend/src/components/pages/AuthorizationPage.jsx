@@ -29,14 +29,14 @@ const AuthorizationPage = () => {
   const loginSchema = Yup.object().shape({
     userName: Yup.string()
       .trim()
-      .required(t('loginPage.card.body.userName.yup.required'))
-      .min(3, t('loginPage.card.body.userName.yup.min'))
-      .max(30, t('loginPage.card.body.userName.yup.max')),
+      .required(t('authorizationPage.card.body.userName.yup.required'))
+      .min(3, t('authorizationPage.card.body.userName.yup.min'))
+      .max(20, t('authorizationPage.card.body.userName.yup.max')),
     password: Yup.string()
       .trim()
-      .required(t('loginPage.card.body.password.yup.required'))
-      .min(4, t('loginPage.card.body.password.yup.min'))
-      .max(20, t('loginPage.card.body.password.yup.max')),
+      .required(t('authorizationPage.card.body.password.yup.required'))
+      .min(3, t('authorizationPage.card.body.password.yup.min'))
+      .max(30, t('authorizationPage.card.body.password.yup.max')),
   });
 
   const form = (
@@ -77,18 +77,18 @@ const AuthorizationPage = () => {
         };
         return (
           <Form noValidate onSubmit={handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0 position-relative">
-            <h1 className="text-center mb-4">{t('loginPage.card.body.header')}</h1>
+            <h1 className="text-center mb-4">{t('authorizationPage.card.body.header')}</h1>
             <Form.Group className="form-floating mb-3" controlId="formLoginUserName">
               <FloatingLabel
                 controlId="floatingLoginInput1"
-                label={t('loginPage.card.body.userName.placeholder')}
+                label={t('authorizationPage.card.body.userName.placeholder')}
                 className="mb-4"
               >
                 <Form.Control
                   type="text"
                   name="userName"
                   autoComplete="userName"
-                  placeholder={t('loginPage.card.body.userName.placeholder')}
+                  placeholder={t('authorizationPage.card.body.userName.placeholder')}
                   ref={userNameRef}
                   value={values.userName}
                   onChange={onChange}
@@ -103,14 +103,14 @@ const AuthorizationPage = () => {
             <Form.Group className="form-floating mb-3" controlId="formLoginPassword">
               <FloatingLabel
                 controlId="floatingLoginInput2"
-                label={t('loginPage.card.body.password.placeholder')}
+                label={t('authorizationPage.card.body.password.placeholder')}
                 className="mb-4"
               >
                 <Form.Control
                   type="password"
                   name="password"
                   autoComplete="password"
-                  placeholder={t('loginPage.card.body.password.placeholder')}
+                  placeholder={t('authorizationPage.card.body.password.placeholder')}
                   ref={passwordRef}
                   value={values.password}
                   onChange={onChange}
@@ -132,7 +132,7 @@ const AuthorizationPage = () => {
               title="Tooltip on bottom"
               disabled={submitting}
             >
-              {t('loginPage.card.body.submit')}
+              {t('authorizationPage.card.body.submit')}
             </Button>
             <Overlay target={buttonRef.current} placement="bottom" show={authFailed}>
               {({
@@ -153,7 +153,7 @@ const AuthorizationPage = () => {
                     ...props.style,
                   }}
                 >
-                  {t('loginPage.card.body.warnings.authFailed')}
+                  {t('authorizationPage.card.body.warnings.authFailed')}
                 </div>
               )}
             </Overlay>
@@ -175,9 +175,9 @@ const AuthorizationPage = () => {
             </Card.Body>
             <Card.Footer className="p-4">
               <div className="text-center">
-                <span>{t('loginPage.card.footer.description')}</span>
+                <span>{t('authorizationPage.card.footer.description')}</span>
                 <a className="text-success" href={paths.signingUp}>
-                  {t('loginPage.card.footer.link')}
+                  {t('authorizationPage.card.footer.link')}
                 </a>
               </div>
             </Card.Footer>
