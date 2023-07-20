@@ -46,7 +46,7 @@ const SuccessedChannels = () => {
     loadingStatus: { status: messagesStatus },
   } = useSelector((state) => state.messages);
 
-  console.log('channelsStatus', channelsStatus);
+  console.log('channelsStatus', channelsStatus, '<-------------------------------------------------');
 
   useEffect(() => {
     const notification = getToastNotification(t, channelsActionsType);
