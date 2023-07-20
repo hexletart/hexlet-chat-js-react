@@ -1,7 +1,9 @@
 /* eslint-disable no-param-reassign */
 import _ from 'lodash';
 
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter, current } from '@reduxjs/toolkit';
+
+import { actions as channelsActions } from './channelsSlice';
 
 const messagesAdapter = createEntityAdapter();
 
@@ -38,11 +40,21 @@ const messagesSlice = createSlice({
         channelId,
         id,
       };
+      console.log(current(state));
     },
     resetState: (state) => {
       messagesAdapter.removeAll(state);
       state = Object.assign(state, _.cloneDeep(initialStateDefaults));
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(channelsActions.removedChannel, (state, { payload: { id: removedChannelId } }) => {
+        const removedIds = Object.entries(state.entities)
+          .filter(([, { channelId }]) => channelId === removedChannelId)
+          .map(([id]) => +id);
+        messagesAdapter.removeMany(state, removedIds);
+      });
   },
 });
 
