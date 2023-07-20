@@ -24,7 +24,7 @@ const SuccessedMessages = () => {
   if (!channels[currentChannelId]) {
     throw new Error('Channels list does not contain active channel');
     // later I can split errors according types
-  }
+  } // added toast!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   const messagesByCurrentChannel = Object.values(messages)
     .filter((message) => message.channelId === currentChannelId);
