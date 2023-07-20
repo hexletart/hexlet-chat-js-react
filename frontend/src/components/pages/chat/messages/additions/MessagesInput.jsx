@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
@@ -9,17 +9,16 @@ import { getAuthUserName } from '../../../../../tools/auth.js';
 const MessagesInput = ({ channelId, isBlocking }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const inputEl = useRef();
-  useEffect(() => {
-    inputEl.current.select();
-  }, []);
+
   const form = (
     <Formik
       className="py-1 border rounded-2"
       initialValues={{ message: '' }}
       onSubmit={(values, actions) => {
         dispatch(messagesActions.sendMessageAdding({
-          body: values.message, channelId, userName: getAuthUserName(),
+          body: values.message,
+          userName: getAuthUserName(),
+          channelId,
         }));
         actions.resetForm();
       }}
@@ -35,7 +34,9 @@ const MessagesInput = ({ channelId, isBlocking }) => {
                 name="message"
                 autoComplete="message"
                 placeholder={t('chatPage.authedChat.messages.form.input.placeholder')}
-                ref={inputEl}
+                ref={(inputEl) => {
+                  inputEl?.focus();
+                }}
                 value={values.message}
                 onChange={handleChange}
                 disabled={isBlocking}
