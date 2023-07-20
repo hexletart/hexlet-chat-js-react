@@ -1,16 +1,22 @@
 /* eslint-disable no-param-reassign */
+import _ from 'lodash';
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 const channelsAdapter = createEntityAdapter();
 
+const initialStateDefaults = {
+  loadingStatus: {
+    id: null,
+    type: null,
+    status: null,
+  },
+  currentChannelId: null,
+  defaultChannelId: null,
+};
+
 const channelsSlice = createSlice({
   name: 'channels',
-  initialState: channelsAdapter.getInitialState({
-    loadingStatus: { type: null, status: null, id: null },
-    currentChannelId: null,
-    defaultChannelId: null,
-    // error: null,
-  }),
+  initialState: channelsAdapter.getInitialState(_.cloneDeep(initialStateDefaults)),
   reducers: {
     // ---==< settingDefaultChannelId >==---
     addedDefaultChannelId: (state, { payload: { id } }) => {
@@ -72,6 +78,10 @@ const channelsSlice = createSlice({
         status: 'successed',
         id,
       };
+    },
+    resetState: (state) => {
+      channelsAdapter.removeAll(state);
+      state = Object.assign(state, _.cloneDeep(initialStateDefaults));
     },
   },
 });

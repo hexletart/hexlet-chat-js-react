@@ -1,14 +1,22 @@
 /* eslint-disable no-param-reassign */
+import _ from 'lodash';
+
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 const messagesAdapter = createEntityAdapter();
 
+const initialStateDefaults = {
+  loadingStatus: {
+    id: null,
+    type: null,
+    status: null,
+    channelId: null,
+  },
+};
+
 const messagesSlice = createSlice({
   name: 'messages',
-  initialState: messagesAdapter.getInitialState({
-    loadingStatus: { type: null, status: null, channelId: null, id: null },
-    error: null,
-  }),
+  initialState: messagesAdapter.getInitialState(_.cloneDeep(initialStateDefaults)),
   reducers: {
     // ---==< messagesAdding >==---
     addedMessages: messagesAdapter.addMany,
@@ -30,6 +38,10 @@ const messagesSlice = createSlice({
         channelId,
         id,
       };
+    },
+    resetState: (state) => {
+      messagesAdapter.removeAll(state);
+      state = Object.assign(state, _.cloneDeep(initialStateDefaults));
     },
   },
 });
