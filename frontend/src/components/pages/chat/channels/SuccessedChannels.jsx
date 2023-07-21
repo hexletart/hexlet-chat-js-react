@@ -90,7 +90,6 @@ const SuccessedChannels = () => {
         />
       </Col>
       {renderModal({ modalInfo, hideModal, validationSchema })}
-      {/* {renderChannelsStatus(channelsLoadingStatus, currentError, t)} */}
     </>
   );
 };

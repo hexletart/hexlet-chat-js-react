@@ -27,4 +27,3 @@ const MessagesDisplay = ({ messages }) => {
 };
 
 export default MessagesDisplay;
-// { body: "new message", channelId: 7, id: 8, username: "admin" }

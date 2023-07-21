@@ -66,7 +66,6 @@ const AuthorizationPage = () => {
             applySetterAsync(setAuthFailed, false, 30000);
             userNameRef.current.select();
           }
-          // throw error;
         }
       }}
     >
