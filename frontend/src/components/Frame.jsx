@@ -30,8 +30,8 @@ const Frame = ({ children }) => {
   return (
     <div className="d-flex flex-column h-100 bg-light">
       <Navbar className="bg-success bg-gradient shadow">
-        <Container>
-          <Navbar.Brand href={paths.main}>{t('appFrame.navbar.appName')}</Navbar.Brand>
+        <Container className="flex-wrap">
+          <Navbar.Brand className="text-wrap" href={paths.main}>{t('appFrame.navbar.appName')}</Navbar.Brand>
           <ExitButton />
         </Container>
       </Navbar>

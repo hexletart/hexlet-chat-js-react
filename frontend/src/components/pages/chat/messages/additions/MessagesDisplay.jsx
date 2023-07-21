@@ -12,7 +12,7 @@ const MessagesDisplay = ({ messages }) => {
   return (
     <div className="overflow-auto px-5" id="messages-container">
       {messages.map(({ id, userName, body }) => (
-        <div className="text-brake mb-2" key={id}>
+        <div className="text-break mb-2" key={id}>
           <b>
             {`${userName}: `}
           </b>

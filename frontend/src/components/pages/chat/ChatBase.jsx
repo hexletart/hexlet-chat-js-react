@@ -49,7 +49,7 @@ const ChatPage = ({ tokenJSON }) => {
   const MessagesComponent = getMessagesComponent(loadingStatus);
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
-      <Row className="h-100 flex-md-row bg-white">
+      <Row className="h-100 flex-nowrap bg-white">
         <ChannelsComponent />
         <MessagesComponent />
       </Row>
