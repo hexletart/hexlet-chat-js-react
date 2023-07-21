@@ -1,28 +1,39 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Container, Navbar, Button } from 'react-bootstrap';
+import { ButtonToolbar, ButtonGroup, Container, Navbar, Button } from 'react-bootstrap';
 import { actions as authedActions } from '../slices/authedSlice';
 
 import useAuthHook from '../hooks/authHook';
 import paths from '../paths';
 import ToastsBase from './toasts/ToastsBase';
 
-const ExitButton = () => {
+const NavButtons = () => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const auth = useAuthHook();
   const handleLogout = () => {
     console.log('from logout by frame');
     dispatch(authedActions.loggedOut());
     auth.logout();
   };
-  return (
-    auth.loggedIn
-      ? (
+
+  const switchLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+  };
+
+  const buttons = (
+    <ButtonToolbar aria-label="Toolbar with button groups">
+      <ButtonGroup className="me-2" aria-label="Second group">
+        <Button variant="outline-light" className="border-0" onClick={switchLanguage} size="sm">{t('appFrame.navbar.buttons.switchLanguage')}</Button>
+      </ButtonGroup>
+      <ButtonGroup aria-label="Third group">
         <Button variant="light" size="sm" onClick={handleLogout}>{t('appFrame.navbar.buttons.output')}</Button>
-      ) : null
+      </ButtonGroup>
+    </ButtonToolbar>
   );
+
+  return auth.loggedIn ? buttons : null;
 };
 
 const Frame = ({ children }) => {
@@ -32,7 +43,7 @@ const Frame = ({ children }) => {
       <Navbar className="bg-success bg-gradient shadow">
         <Container className="flex-wrap">
           <Navbar.Brand className="text-wrap" href={paths.main}>{t('appFrame.navbar.appName')}</Navbar.Brand>
-          <ExitButton />
+          <NavButtons />
         </Container>
       </Navbar>
       <ToastsBase />

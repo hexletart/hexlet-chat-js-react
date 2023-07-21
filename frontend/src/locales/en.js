@@ -5,6 +5,7 @@ export default {
         appName: 'My first React App',
         buttons: {
           output: 'Output',
+          switchLanguage: 'En/Ru',
         },
       },
     },

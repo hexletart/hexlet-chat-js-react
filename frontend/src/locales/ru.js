@@ -5,6 +5,7 @@ export default {
         appName: 'Моё первое приложение на Реакт',
         buttons: {
           output: 'Выход',
+          switchLanguage: 'Рус/Англ',
         },
       },
     },
