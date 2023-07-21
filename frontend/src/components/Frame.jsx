@@ -25,7 +25,7 @@ const NavButtons = () => {
   const buttons = (
     <ButtonToolbar aria-label="Toolbar with button groups">
       <ButtonGroup className="me-2" aria-label="Second group">
-        <Button variant="outline-light" className="border-0" onClick={switchLanguage} size="sm">{t('appFrame.navbar.buttons.switchLanguage')}</Button>
+        <Button variant="outline-secondary" className="border-0 text-light" onClick={switchLanguage} size="sm">{t('appFrame.navbar.buttons.switchLanguage')}</Button>
       </ButtonGroup>
       <ButtonGroup aria-label="Third group">
         <Button variant="light" size="sm" onClick={handleLogout}>{t('appFrame.navbar.buttons.output')}</Button>
