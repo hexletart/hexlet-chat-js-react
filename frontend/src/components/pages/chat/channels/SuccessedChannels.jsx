@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
-import useToastHook from '../../../../hooks/toastsHook.jsx';
 import getModal from '../modal/index.js';
 import ChannelsList from './additions/ChannelsList';
 import AddChannel from './additions/AddChannel';
@@ -31,7 +31,6 @@ const getToastNotification = (translator, type) => {
 };
 
 const SuccessedChannels = () => {
-  const toasts = useToastHook();
   const { t } = useTranslation();
   const {
     entities: channels,
@@ -51,7 +50,7 @@ const SuccessedChannels = () => {
   useEffect(() => {
     const notification = getToastNotification(t, channelsActionsType);
     if (channelsStatus === 'successed' && notification) {
-      toasts.addToast({ text: notification, type: channelsStatus });
+      toast.success(notification);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelsStatus]);

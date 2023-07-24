@@ -2,11 +2,11 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { ButtonToolbar, ButtonGroup, Container, Navbar, Button } from 'react-bootstrap';
-import { actions as authedActions } from '../slices/authedSlice';
+import { ToastContainer } from 'react-toastify';
 
+import { actions as authedActions } from '../slices/authedSlice';
 import useAuthHook from '../hooks/authHook';
 import paths from '../paths';
-import ToastsBase from './toasts/ToastsBase';
 
 const NavButtons = () => {
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const Frame = ({ children }) => {
           <NavButtons />
         </Container>
       </Navbar>
-      <ToastsBase />
+      <ToastContainer autoClose={2500} />
       {children}
     </div>
   );
