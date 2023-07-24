@@ -5,6 +5,8 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+
 import paths from '../../paths.js';
 import routes from '../../routes.js';
 import useAuthHook from '../../hooks/authHook';
@@ -51,20 +53,23 @@ const AuthorizationPage = () => {
           setSubmitting(true);
           setAuthFailed(false);
           const { token, username } = await axios.post(routes.loginPath, {
-            username: values.userName.trim(),
-            password: values.password.trim(),
+            usernames: values.userName.trim(),
+            passwords: values.password.trim(),
           })
             .then((response) => response.data);
           auth.login(JSON.stringify(token), username);
           actions.setSubmitting(false);
           navigate(paths.main);
         } catch (error) {
+          console.log(error);
           actions.setSubmitting(false);
           applySetterAsync(setSubmitting, false, 1000);
           if (error.isAxiosError && error.response.status === 401) {
             setAuthFailed(true);
             applySetterAsync(setAuthFailed, false, 30000);
             userNameRef.current.select();
+          } else {
+            toast.error(error.message);
           }
         }
       }}

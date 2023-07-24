@@ -5,6 +5,8 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+
 import paths from '../../paths.js';
 import routes from '../../routes.js';
 import applySetterAsync from '../../tools/applySetterAsync.js';
@@ -69,8 +71,9 @@ const RegistrationPage = () => {
             setAuthFailed(true);
             applySetterAsync(setAuthFailed, false, 30000);
             userNameRef.current.select();
+          } else {
+            toast.error(error.message);
           }
-          throw error;
         }
       }}
     >
