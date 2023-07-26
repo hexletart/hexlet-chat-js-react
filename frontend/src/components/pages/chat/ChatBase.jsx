@@ -11,11 +11,11 @@ import { actions as authedActions } from '../../../slices/authedSlice.js';
 import getChannelsComponent from './channels/index.js';
 import getMessagesComponent from './messages/index.js';
 import useAuthHook from '../../../hooks/authHook.jsx';
-import useToastHook from '../../../hooks/toastsHook.jsx';
+import useHttpErrorsToasts from '../../../hooks/httpErrorsToasts.jsx';
 
 const ChatPage = ({ tokenJSON }) => {
+  const sendError = useHttpErrorsToasts();
   const auth = useAuthHook();
-  const { addToast } = useToastHook();
   const dispatch = useDispatch();
   const [loadingStatus, setLoadingStatus] = useState('loading');
 
@@ -32,7 +32,10 @@ const ChatPage = ({ tokenJSON }) => {
           setLoadingStatus('successed');
         })
         .catch((error) => {
-          addToast({ type: 'failed', text: error.message });
+          if (error.isAxiosError && error.response.status !== 401) {
+            const status = error?.response.status ?? null;
+            sendError(status);
+          }
           dispatch(authedActions.loggedOut());
           auth.logout();
         });

@@ -5,14 +5,15 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
-import { toast } from 'react-toastify';
 
 import paths from '../../paths.js';
 import routes from '../../routes.js';
-import applySetterAsync from '../../tools/applySetterAsync.js';
 import useAuthHook from '../../hooks/authHook';
+import applySetterAsync from '../../tools/applySetterAsync.js';
+import useHttpErrorsToasts from '../../hooks/httpErrorsToasts.jsx';
 
 const RegistrationPage = () => {
+  const sendError = useHttpErrorsToasts();
   const auth = useAuthHook();
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -67,12 +68,13 @@ const RegistrationPage = () => {
         } catch (error) {
           actions.setSubmitting(false);
           applySetterAsync(setSubmitting, false, 1000);
+          userNameRef.current.select();
           if (error.isAxiosError && error.response.status === 409) {
             setAuthFailed(true);
             applySetterAsync(setAuthFailed, false, 30000);
-            userNameRef.current.select();
           } else {
-            toast.error(error.message);
+            const status = error?.response.status ?? null;
+            sendError(status);
           }
         }
       }}

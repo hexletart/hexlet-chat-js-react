@@ -5,14 +5,15 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
-import { toast } from 'react-toastify';
 
 import paths from '../../paths.js';
 import routes from '../../routes.js';
 import useAuthHook from '../../hooks/authHook';
 import applySetterAsync from '../../tools/applySetterAsync.js';
+import useHttpErrorsToasts from '../../hooks/httpErrorsToasts.jsx';
 
 const AuthorizationPage = () => {
+  const sendError = useHttpErrorsToasts();
   const auth = useAuthHook();
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -53,23 +54,23 @@ const AuthorizationPage = () => {
           setSubmitting(true);
           setAuthFailed(false);
           const { token, username } = await axios.post(routes.loginPath, {
-            usernames: values.userName.trim(),
-            passwords: values.password.trim(),
+            username: values.userName.trim(),
+            password: values.password.trim(),
           })
             .then((response) => response.data);
           auth.login(JSON.stringify(token), username);
           actions.setSubmitting(false);
           navigate(paths.main);
         } catch (error) {
-          console.log(error);
           actions.setSubmitting(false);
           applySetterAsync(setSubmitting, false, 1000);
+          userNameRef.current.select();
           if (error.isAxiosError && error.response.status === 401) {
             setAuthFailed(true);
             applySetterAsync(setAuthFailed, false, 30000);
-            userNameRef.current.select();
           } else {
-            toast.error(error.message);
+            const status = error?.response.status ?? null;
+            sendError(status);
           }
         }
       }}
