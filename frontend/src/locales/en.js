@@ -148,18 +148,29 @@ export default {
       },
     },
     toasts: {
-      creating: {
-        successed: 'Channel created',
-        rejected: 'An error occurred while creating the channel',
+      channels: {
+        creating: {
+          successed: 'Channel created',
+          rejected: 'An error occurred while creating the channel',
+        },
+        renaming: {
+          successed: 'Channel renamed',
+          rejected: 'An error occurred while renaming the channel',
+        },
+        removing: {
+          successed: 'Channel removed',
+          rejected: 'An error occurred while removing the channel',
+        },
       },
-      renaming: {
-        successed: 'Channel renamed',
-        rejected: 'An error occurred while renaming the channel',
-      },
-      removing: {
-        successed: 'Channel removed',
-        rejected: 'An error occurred while removing the channel',
-      },
+      data: {
+        errors: {
+          informationalError: 'An informational error has occurred. Please try again a little later or contact support. Error code is',
+          redirectionalError: 'A redirection error has occurred. Please try again a little later or contact support. Error code is',
+          clientError: 'An error has occurred in the application. Please try again later or contact support. Error code is',
+          serverError: 'An error was received on the server side. Please try again a little later or contact support. Error code is',
+          default: 'An unrecognized error has occurred. Please try again a little later or contact support.',
+        },
+      }
     },
   },
 };

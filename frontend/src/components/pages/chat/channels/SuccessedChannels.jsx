@@ -23,9 +23,9 @@ const renderModal = ({
 
 const getToastNotification = (translator, type) => {
   const notifications = {
-    adding: translator('toasts.creating.successed'),
-    renaming: translator('toasts.renaming.successed'),
-    removing: translator('toasts.removing.successed'),
+    adding: translator('toasts.channels.creating.successed'),
+    renaming: translator('toasts.channels.renaming.successed'),
+    removing: translator('toasts.channels.removing.successed'),
   };
   return notifications[type] ?? null;
 };
