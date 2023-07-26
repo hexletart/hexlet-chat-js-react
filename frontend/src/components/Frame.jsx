@@ -46,7 +46,10 @@ const Frame = ({ children }) => {
           <NavButtons />
         </Container>
       </Navbar>
-      <ToastContainer autoClose={6000} />
+      <ToastContainer
+        autoClose={6000}
+        position="top-center"
+      />
       {children}
     </div>
   );
