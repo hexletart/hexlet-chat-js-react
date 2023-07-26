@@ -50,7 +50,9 @@ const SuccessedChannels = () => {
   useEffect(() => {
     const notification = getToastNotification(t, channelsActionsType);
     if (channelsStatus === 'successed' && notification) {
-      toast.success(notification);
+      toast.success(notification, {
+        autoClose: 2500,
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelsStatus]);
