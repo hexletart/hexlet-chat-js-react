@@ -149,18 +149,17 @@ export default {
     },
     toasts: {
       channels: {
-        creating: {
-          successed: 'Channel created',
-          rejected: 'An error occurred while creating the channel',
+        successed: {
+          creating: 'Channel created.',
+          renaming: 'Channel renamed.',
+          removing: 'Channel removed.',
         },
-        renaming: {
-          successed: 'Channel renamed',
-          rejected: 'An error occurred while renaming the channel',
+        send: {
+          creating: 'Channel creation takes longer than usual. Please wait.',
+          renaming: 'Channel renaming takes longer than usual. Please wait.',
+          removing: 'Channel removing takes longer than usual. Please wait.',
         },
-        removing: {
-          successed: 'Channel removed',
-          rejected: 'An error occurred while removing the channel',
-        },
+        default: "Something doesn't work properly. Please inform support.",
       },
       data: {
         errors: {
