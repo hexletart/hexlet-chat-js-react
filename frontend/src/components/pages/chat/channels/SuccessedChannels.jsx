@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
-import { toast } from 'react-toastify';
 
 import getModal from '../modal/index.js';
 import ChannelsList from './additions/ChannelsList';
 import AddChannel from './additions/AddChannel';
+import useChannelsToasts from '../../../../hooks/channelsToasts.jsx';
 
 const renderModal = ({
   modalInfo: { type, item },
@@ -21,16 +21,10 @@ const renderModal = ({
   return <Component onHide={hideModal} item={item} schema={validationSchema} />;
 };
 
-const getToastNotification = (translator, type) => {
-  const notifications = {
-    adding: translator('toasts.channels.creating.successed'),
-    renaming: translator('toasts.channels.renaming.successed'),
-    removing: translator('toasts.channels.removing.successed'),
-  };
-  return notifications[type] ?? null;
-};
-
 const SuccessedChannels = () => {
+  const timerId = useRef();
+
+  const sendToast = useChannelsToasts();
   const { t } = useTranslation();
   const {
     entities: channels,
@@ -48,11 +42,17 @@ const SuccessedChannels = () => {
   console.log('channelsStatus', channelsStatus, '<-------------------------------------------------');
 
   useEffect(() => {
-    const notification = getToastNotification(t, channelsActionsType);
-    if (channelsStatus === 'successed' && notification) {
-      toast.success(notification, {
-        autoClose: 2500,
-      });
+    const notificationsData = { status: channelsStatus, type: channelsActionsType };
+
+    const getDelayedInfo = (delay = 0) => setTimeout(() => {
+      sendToast({ ...notificationsData });
+    }, delay);
+
+    if (channelsStatus === 'send') {
+      timerId.current = getDelayedInfo(5000);
+    } else if (channelsStatus === 'successed') {
+      clearTimeout(timerId.current);
+      sendToast({ ...notificationsData });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelsStatus]);
