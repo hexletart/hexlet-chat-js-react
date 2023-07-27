@@ -1,8 +1,12 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+const filter = require('leo-profanity');
 
 const MessagesDisplay = ({ messages }) => {
+  const { i18n: { language } } = useTranslation();
   const dummy = useRef();
 
+  filter.loadDictionary(language);
   useEffect(() => {
     dummy.current.scrollIntoView({
       behavior: 'smooth',
