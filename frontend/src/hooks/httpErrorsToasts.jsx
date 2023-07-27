@@ -27,11 +27,12 @@ const useHttpErrorsToasts = () => {
   };
 
   const sendError = (status) => {
-    if (!_.isUndefined(status)) {
-      const typpedError = getTyppedError(status);
-      const notification = notificationsSchema[typpedError](status);
-      toast.error(notification);
+    if (_.isUndefined(status)) {
+      return null;
     }
+    const typpedError = getTyppedError(status);
+    const notification = notificationsSchema[typpedError](status);
+    return toast.error(notification);
   };
 
   return sendError;
