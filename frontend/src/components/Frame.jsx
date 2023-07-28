@@ -7,11 +7,16 @@ import { ToastContainer } from 'react-toastify';
 import { actions as authedActions } from '../slices/authedSlice';
 import useAuthHook from '../hooks/authHook';
 import paths from '../paths';
+import useLeoProfanity from '../hooks/leoProfanity';
 
 const NavButtons = () => {
+  const { used, setUsed, setLanguage } = useLeoProfanity();
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const auth = useAuthHook();
+
+  setLanguage(i18n.language);
+
   const handleLogout = () => {
     console.log('from logout by frame');
     dispatch(authedActions.loggedOut());
@@ -24,6 +29,9 @@ const NavButtons = () => {
 
   const buttons = (
     <ButtonToolbar aria-label="Toolbar with button groups">
+      <ButtonGroup className="me-2" aria-label="First group">
+        <Button variant="outline-secondary" className="border-0 text-light" onClick={() => setUsed(!used)} size="sm">цензура</Button>
+      </ButtonGroup>
       <ButtonGroup className="me-2" aria-label="Second group">
         <Button variant="outline-secondary" className="border-0 text-light" onClick={switchLanguage} size="sm">{t('appFrame.navbar.buttons.switchLanguage')}</Button>
       </ButtonGroup>
