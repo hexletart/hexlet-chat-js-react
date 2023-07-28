@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-const filter = require('leo-profanity');
+
+import useLeoProfanity from '../../../../../hooks/leoProfanity';
 
 const MessagesDisplay = ({ messages }) => {
-  const { i18n: { language } } = useTranslation();
   const dummy = useRef();
+  const { used, check } = useLeoProfanity();
 
-  filter.loadDictionary(language);
   useEffect(() => {
     dummy.current.scrollIntoView({
       behavior: 'smooth',
@@ -21,7 +20,7 @@ const MessagesDisplay = ({ messages }) => {
             {`${userName}: `}
           </b>
           <span>
-            {body}
+            {(used ? check(body) : body)}
           </span>
         </div>
       ))}
