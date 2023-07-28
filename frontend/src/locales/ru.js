@@ -6,6 +6,10 @@ export default {
         buttons: {
           output: 'Выход',
           switchLanguage: 'Рус/Англ',
+          switchCensure: {
+            on: 'Добавить цензуру',
+            off: 'Убрать цензуру',
+          },
         },
       },
     },

@@ -6,6 +6,10 @@ export default {
         buttons: {
           output: 'Output',
           switchLanguage: 'En/Ru',
+          switchCensure: {
+            on: 'Enable cencior',
+            off: 'Disable cencior',
+          },
         },
       },
     },

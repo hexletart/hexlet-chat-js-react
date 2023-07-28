@@ -30,13 +30,30 @@ const NavButtons = () => {
   const buttons = (
     <ButtonToolbar aria-label="Toolbar with button groups">
       <ButtonGroup className="me-2" aria-label="First group">
-        <Button variant="outline-secondary" className="border-0 text-light" onClick={() => setUsed(!used)} size="sm">цензура</Button>
+        <Button
+          variant="outline-secondary"
+          className="border-0 text-light"
+          onClick={() => setUsed(!used)}
+        >
+          {used ? t('appFrame.navbar.buttons.switchCensure.off') : t('appFrame.navbar.buttons.switchCensure.on')}
+        </Button>
       </ButtonGroup>
       <ButtonGroup className="me-2" aria-label="Second group">
-        <Button variant="outline-secondary" className="border-0 text-light" onClick={switchLanguage} size="sm">{t('appFrame.navbar.buttons.switchLanguage')}</Button>
+        <Button
+          variant="outline-secondary"
+          className="border-0 text-light"
+          onClick={switchLanguage}
+        >
+          {t('appFrame.navbar.buttons.switchLanguage')}
+        </Button>
       </ButtonGroup>
       <ButtonGroup aria-label="Third group">
-        <Button variant="light" size="sm" onClick={handleLogout}>{t('appFrame.navbar.buttons.output')}</Button>
+        <Button
+          variant="light"
+          onClick={handleLogout}
+        >
+          {t('appFrame.navbar.buttons.output')}
+        </Button>
       </ButtonGroup>
     </ButtonToolbar>
   );
