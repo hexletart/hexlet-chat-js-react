@@ -4,7 +4,9 @@ const SmallSpinner = ({ inversed }) => {
   const blockClassNames = inversed
     ? 'd-flex d-flex align-items-center pe-2 bg-success custom-opacity-65'
     : 'd-flex d-flex align-items-center pe-2 ';
+
   const variant = inversed ? 'light' : 'success';
+
   return (
     <div className={blockClassNames}>
       <Spinner

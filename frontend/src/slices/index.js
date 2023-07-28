@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import channelsReducer from './channelsSlice.js';
-import messagesReducer from './messagesSlice.js';
-import authedReducer from './authedSlice.js';
-import SocketClient from '../api/SocketClient.js';
+import channelsReducer from './channelsSlice';
+import messagesReducer from './messagesSlice';
+import authedReducer from './authedSlice';
+import SocketClient from '../api/SocketClient';
 import socketMiddleware from '../middleware/socketMiddleware';
 
 const socket = new SocketClient();

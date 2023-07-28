@@ -8,6 +8,6 @@ export default (status) => {
     case 'loading':
       return GettingMessages;
     default:
-      throw new Error(`${status} is unknown, please check messages getting`);
+      return null;
   }
 };

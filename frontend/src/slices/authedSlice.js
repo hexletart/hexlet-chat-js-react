@@ -9,12 +9,15 @@ const authedSlice = createSlice({
   name: 'authed',
   initialState,
   reducers: {
+
     loggedIn: (state) => {
       state.isAuthed = true;
     },
+
     loggedOut: (state) => {
       state.isAuthed = false;
     },
+
   },
 });
 

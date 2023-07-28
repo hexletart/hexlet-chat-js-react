@@ -10,15 +10,14 @@ import paths from '../paths';
 import useLeoProfanity from '../hooks/leoProfanity';
 
 const NavButtons = () => {
-  const { used, setUsed, setLanguage } = useLeoProfanity();
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const auth = useAuthHook();
+  const { used, setUsed, setLanguage } = useLeoProfanity();
 
   setLanguage(i18n.language);
 
   const handleLogout = () => {
-    console.log('from logout by frame');
     dispatch(authedActions.loggedOut());
     auth.logout();
   };
@@ -29,6 +28,7 @@ const NavButtons = () => {
 
   const buttons = (
     <ButtonToolbar aria-label="Toolbar with button groups">
+
       <ButtonGroup className="me-2" aria-label="First group">
         <Button
           variant="outline-secondary"
@@ -38,6 +38,7 @@ const NavButtons = () => {
           {used ? t('appFrame.navbar.buttons.switchCensure.off') : t('appFrame.navbar.buttons.switchCensure.on')}
         </Button>
       </ButtonGroup>
+
       <ButtonGroup className="me-2" aria-label="Second group">
         <Button
           variant="outline-secondary"
@@ -47,6 +48,7 @@ const NavButtons = () => {
           {t('appFrame.navbar.buttons.switchLanguage')}
         </Button>
       </ButtonGroup>
+
       <ButtonGroup aria-label="Third group">
         <Button
           variant="light"
@@ -55,6 +57,7 @@ const NavButtons = () => {
           {t('appFrame.navbar.buttons.output')}
         </Button>
       </ButtonGroup>
+
     </ButtonToolbar>
   );
 
@@ -63,19 +66,24 @@ const NavButtons = () => {
 
 const Frame = ({ children }) => {
   const { t } = useTranslation();
+
   return (
     <div className="d-flex flex-column h-100 bg-light">
+
       <Navbar className="bg-success bg-gradient shadow">
         <Container className="flex-wrap">
           <Navbar.Brand className="text-wrap" href={paths.main}>{t('appFrame.navbar.appName')}</Navbar.Brand>
           <NavButtons />
         </Container>
       </Navbar>
+
+      {children}
+
       <ToastContainer
         autoClose={6000}
         position="top-center"
       />
-      {children}
+
     </div>
   );
 };

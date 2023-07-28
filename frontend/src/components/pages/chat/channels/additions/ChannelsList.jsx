@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 import { Nav, Dropdown, ButtonGroup, Button } from 'react-bootstrap';
 
 import {
@@ -15,6 +15,7 @@ const ChannelsList = ({ onShow, isBlocking, isRelated, relatedId }) => {
   const channels = useSelector(channelsSelectors.selectAll);
   const { currentChannelId } = useSelector((state) => state.channels);
   const { t } = useTranslation();
+
   const handleSubmit = (currentId) => (e) => {
     e.preventDefault();
     dispatch(channelsActions.setCurrentChannelId({ id: currentId }));
@@ -24,6 +25,7 @@ const ChannelsList = ({ onShow, isBlocking, isRelated, relatedId }) => {
     const menu = (
       <>
         <Dropdown.Toggle disabled={isBlocking} split variant={activeStatus ? 'success' : 'light'} className="rounded-0 flex-grow-0" id="dropdown-split-basic" />
+
         <Dropdown.Menu>
           <Dropdown.Item disabled={isBlocking} onClick={() => onShow('renaming', item)}>
             {t('chatPage.authedChat.channels.buttons.channelMenu.renaming')}
@@ -52,6 +54,7 @@ const ChannelsList = ({ onShow, isBlocking, isRelated, relatedId }) => {
       </Dropdown>
     );
   };
+
   const renderNotRemovableItem = (activeStatus, item) => (
     <Button
       disabled={isBlocking}

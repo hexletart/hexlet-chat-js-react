@@ -2,19 +2,19 @@ import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Button, Modal, Form } from 'react-bootstrap';
+
 import { actions as channelsActions } from '../../../../slices/channelsSlice';
 
 const Remove = ({ onHide, item }) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const submitEl = useRef();
+  const { t } = useTranslation();
   useEffect(() => {
     submitEl.current.focus();
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('item from modal "REMOVE" => ', item);
     dispatch(channelsActions.sendChannelRemoving(item));
     onHide();
   };

@@ -1,24 +1,23 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Container, Row } from 'react-bootstrap';
 
-import normalize from '../../../tools/normalize.js';
-import routes from '../../../routes.js';
-import { actions as channelsActions } from '../../../slices/channelsSlice.js';
-import { actions as messagesActions } from '../../../slices/messagesSlice.js';
-import { actions as authedActions } from '../../../slices/authedSlice.js';
-import getChannelsComponent from './channels/index.js';
-import getMessagesComponent from './messages/index.js';
-import useAuthHook from '../../../hooks/authHook.jsx';
-import useHttpErrorsToasts from '../../../hooks/httpErrorsToasts.jsx';
+import normalize from '../../../tools/normalize';
+import routes from '../../../routes';
+import { actions as channelsActions } from '../../../slices/channelsSlice';
+import { actions as messagesActions } from '../../../slices/messagesSlice';
+import { actions as authedActions } from '../../../slices/authedSlice';
+import getChannelsComponent from './channels/index';
+import getMessagesComponent from './messages/index';
+import useAuthHook from '../../../hooks/authHook';
+import useHttpErrorsToasts from '../../../hooks/httpErrorsToasts';
 
 const ChatPage = ({ tokenJSON }) => {
+  const [loadingStatus, setLoadingStatus] = useState('loading');
+  const dispatch = useDispatch();
   const sendError = useHttpErrorsToasts();
   const auth = useAuthHook();
-  const dispatch = useDispatch();
-  const [loadingStatus, setLoadingStatus] = useState('loading');
-
   useEffect(() => {
     const fetchData = async () => {
       await axios.get(routes.usersPath, { headers: { ...tokenJSON } })
@@ -40,7 +39,9 @@ const ChatPage = ({ tokenJSON }) => {
           auth.logout();
         });
     };
+
     fetchData();
+
     return () => {
       dispatch(channelsActions.resetState());
       dispatch(messagesActions.resetState());
@@ -50,6 +51,7 @@ const ChatPage = ({ tokenJSON }) => {
 
   const ChannelsComponent = getChannelsComponent(loadingStatus);
   const MessagesComponent = getMessagesComponent(loadingStatus);
+
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
       <Row className="h-100 flex-nowrap bg-white">

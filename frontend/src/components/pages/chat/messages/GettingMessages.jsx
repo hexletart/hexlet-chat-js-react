@@ -1,3 +1,4 @@
+import React from 'react';
 import { Col, Placeholder } from 'react-bootstrap';
 
 const GettingMessages = () => (

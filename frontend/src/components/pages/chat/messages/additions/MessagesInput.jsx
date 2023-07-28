@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { actions as messagesActions } from '../../../../../slices/messagesSlice.js';
-import { getAuthUserName } from '../../../../../tools/auth.js';
+
+import { actions as messagesActions } from '../../../../../slices/messagesSlice';
+import { getAuthUserName } from '../../../../../tools/auth';
 
 const MessagesInput = ({ channelId, isBlocking }) => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const MessagesInput = ({ channelId, isBlocking }) => {
       }}
     </Formik>
   );
+
   return (
     <div className="mt-auto px-5 py-3">
       {form}

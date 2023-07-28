@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Button, Modal, Form, FloatingLabel } from 'react-bootstrap';
+
 import { actions as channelsActions } from '../../../../slices/channelsSlice';
 
 const Add = ({ onHide, schema }) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const inputEl = useRef();
+  const { t } = useTranslation();
   useEffect(() => {
     inputEl.current.focus();
   }, []);

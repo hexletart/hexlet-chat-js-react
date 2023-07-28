@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import AuthProvider from './providers/AuthProvider';
+import LeoProfanityProvider from './providers/LeoProfanityProvider';
 import paths from '../paths.js';
 import Frame from './Frame';
 import RegistrationPage from './pages/RegistrationPage';
 import LoginPage from './pages/AuthorizationPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
-
-import AuthProvider from './providers/AuthProvider';
-import LeoProfanityProvider from './providers/LeoProfanityProvider.jsx';
 
 const App = () => (
   <AuthProvider>

@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import _ from 'lodash';
-
-import { createSlice, createEntityAdapter, current } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 import { actions as channelsActions } from './channelsSlice';
 
@@ -23,7 +22,6 @@ const messagesSlice = createSlice({
     // ---==< messagesAdding >==---
     addedMessages: messagesAdapter.addMany,
     sendMessageAdding: (state, { payload: { channelId } }) => {
-      console.log('in message adding');
       state.loadingStatus = {
         type: 'adding',
         status: 'send',
@@ -40,7 +38,6 @@ const messagesSlice = createSlice({
         channelId,
         id,
       };
-      console.log(current(state));
     },
     resetState: (state) => {
       messagesAdapter.removeAll(state);

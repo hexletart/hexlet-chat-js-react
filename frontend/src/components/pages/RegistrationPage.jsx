@@ -6,23 +6,22 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
 
-import paths from '../../paths.js';
-import routes from '../../routes.js';
+import paths from '../../paths';
+import routes from '../../routes';
 import useAuthHook from '../../hooks/authHook';
-import applySetterAsync from '../../tools/applySetterAsync.js';
-import useHttpErrorsToasts from '../../hooks/httpErrorsToasts.jsx';
+import applySetterAsync from '../../tools/applySetterAsync';
+import useHttpErrorsToasts from '../../hooks/httpErrorsToasts';
 
 const RegistrationPage = () => {
-  const sendError = useHttpErrorsToasts();
-  const auth = useAuthHook();
+  const [submitting, setSubmitting] = useState(false);
+  const [authFailed, setAuthFailed] = useState(false);
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
   const buttonRef = useRef(null);
   const passwordConfirmationRef = useRef(null);
   const navigate = useNavigate();
-
-  const [submitting, setSubmitting] = useState(false);
-  const [authFailed, setAuthFailed] = useState(false);
+  const auth = useAuthHook();
+  const sendError = useHttpErrorsToasts();
 
   useEffect(() => {
     userNameRef.current.focus();

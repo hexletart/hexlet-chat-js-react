@@ -22,6 +22,7 @@ const channelsSlice = createSlice({
     addedDefaultChannelId: (state, { payload: { id } }) => {
       state.defaultChannelId = id;
     },
+
     // ---==< managingCurrentChannelId >==---
     addedCurrentChannelId: (state, { payload: { id } }) => {
       state.currentChannelId = id;
@@ -29,6 +30,7 @@ const channelsSlice = createSlice({
     setCurrentChannelId: (state, { payload: { id } }) => {
       state.currentChannelId = id;
     },
+
     // ---==< channelsAdding >==---
     addedChannels: channelsAdapter.addMany,
     sendChannelAdding: (state) => {
@@ -47,6 +49,7 @@ const channelsSlice = createSlice({
         id: payload.id,
       };
     },
+
     // ---==< channelsRenaming >==---
     sendChannelRenaming: (state, { payload: { id } }) => {
       state.loadingStatus = {
@@ -63,6 +66,7 @@ const channelsSlice = createSlice({
         id,
       };
     },
+
     // ---==< channelsRemoving >==---
     sendChannelRemoving: (state, { payload: { id } }) => {
       state.loadingStatus = {

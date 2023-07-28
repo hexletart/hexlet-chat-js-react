@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Col } from 'react-bootstrap';
 
@@ -20,11 +21,6 @@ const SuccessedMessages = () => {
   const isMessagesInputBlocking = [channelsStatus, messagesStatus].includes('send');
 
   const activeChannel = channels[currentChannelId];
-
-  if (!channels[currentChannelId]) {
-    throw new Error('Channels list does not contain active channel');
-    // later I can split errors according types
-  } // added toast!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   const messagesByCurrentChannel = Object.values(messages)
     .filter((message) => message.channelId === currentChannelId);

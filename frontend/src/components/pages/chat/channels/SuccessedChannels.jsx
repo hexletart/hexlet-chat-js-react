@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { Col } from 'react-bootstrap';
+import * as Yup from 'yup';
 
-import getModal from '../modal/index.js';
+import getModal from '../modal/index';
 import ChannelsList from './additions/ChannelsList';
 import AddChannel from './additions/AddChannel';
-import useChannelsToasts from '../../../../hooks/channelsToasts.jsx';
+import useChannelsToasts from '../../../../hooks/channelsToasts';
 
 const renderModal = ({
   modalInfo: { type, item },
@@ -17,15 +17,17 @@ const renderModal = ({
   if (!type) {
     return null;
   }
+
   const Component = getModal(type);
+
   return <Component onHide={hideModal} item={item} schema={validationSchema} />;
 };
 
 const SuccessedChannels = () => {
   const timerId = useRef();
-
-  const sendToast = useChannelsToasts();
   const { t } = useTranslation();
+  const sendToast = useChannelsToasts();
+
   const {
     entities: channels,
     loadingStatus: {
@@ -38,8 +40,6 @@ const SuccessedChannels = () => {
   const {
     loadingStatus: { status: messagesStatus },
   } = useSelector((state) => state.messages);
-
-  console.log('channelsStatus', channelsStatus, '<-------------------------------------------------');
 
   useEffect(() => {
     const notificationsData = { status: channelsStatus, type: channelsActionsType };
