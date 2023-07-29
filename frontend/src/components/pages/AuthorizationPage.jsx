@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
+import { FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
 
 import paths from '../../paths';
 import routes from '../../routes';
@@ -66,7 +66,8 @@ const AuthorizationPage = () => {
           userNameRef.current.select();
           if (error.isAxiosError && error.response.status === 401) {
             setAuthFailed(true);
-            applySetterAsync(setAuthFailed, false, 30000);
+            console.log('yes!!!!!!!!', authFailed);
+            // applySetterAsync(setAuthFailed, false, 30000);
           } else {
             const status = error?.response.status ?? null;
             sendError(status);
@@ -126,41 +127,21 @@ const AuthorizationPage = () => {
                 {(touched.password && errors.password) && <div className="invalid-tooltip">{errors.password}</div>}
               </FloatingLabel>
             </Form.Group>
-            <Button
-              type="submit"
-              ref={buttonRef}
-              className="w-100 mb-3"
-              variant="outline-success"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Tooltip on bottom"
-              disabled={submitting}
-            >
-              {t('authorizationPage.card.body.submit')}
-            </Button>
-            <Overlay target={buttonRef.current} placement="bottom" show={authFailed}>
-              {({
-                placement: _placement,
-                arrowProps: _arrowProps,
-                show: _show,
-                popper: _popper,
-                hasDoneInitialMeasure: _hasDoneInitialMeasure,
-                ...props
-              }) => (
-                <div
-                  {...props}
-                  className="position-absolute text-white rounded px-2 py-1"
-                  style={{
-                    backgroundColor: 'rgba(220,53,69,.9)',
-                    fontSize: '.875rem',
-                    marginTop: '0.1rem',
-                    ...props.style,
-                  }}
-                >
-                  {t('authorizationPage.card.body.warnings.authFailed')}
-                </div>
-              )}
-            </Overlay>
+            <div className="position-relative">
+              <Button
+                type="submit"
+                ref={buttonRef}
+                className="w-100 mb-3"
+                variant="outline-success"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Tooltip on bottom"
+                disabled={submitting}
+              >
+                {t('authorizationPage.card.body.submit')}
+              </Button>
+              {authFailed && <div className="custom-invalid-tooltip">{t('authorizationPage.card.body.warnings.authFailed')}</div>}
+            </div>
           </Form>
         );
       }}

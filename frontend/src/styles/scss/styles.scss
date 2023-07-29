@@ -16,3 +16,17 @@
 .custom-opacity-65 {
 	opacity: .65;
 }
+
+.custom-invalid-tooltip {
+	background-color: rgba(220,53,69,.9);
+	border-radius: .25rem;
+	color: #fff;
+	display: block;
+	font-size: .875rem;
+	margin-top: .1rem;
+	max-width: 100%;
+	padding: .25rem .5rem;
+	position: absolute;
+	top: 100%;
+	z-index: 5;
+}
