@@ -10,6 +10,7 @@ const useHttpErrorsToasts = () => {
     redirectionalError: (status) => `${t('toasts.data.errors.redirectionalError')} ${status}.`,
     clientError: (status) => `${t('toasts.data.errors.clientError')} ${status}.`,
     serverError: (status) => `${t('toasts.data.errors.serverError')} ${status}.`,
+    testingConnectionError: () => t('toasts.data.errors.connection'),
     default: () => t('toasts.data.errors.default'),
   };
 
@@ -18,10 +19,13 @@ const useHttpErrorsToasts = () => {
       return 'informationalError';
     } if (code >= 300 && code < 400) {
       return 'redirectionError';
-    } if (code >= 400 && code < 500) {
-      return 'clientError';
-    } if (code >= 500 && code < 600) {
-      return 'serverError';
+    // } if (code >= 400 && code < 500) {
+    //   return 'clientError';
+    // } if (code >= 500 && code < 600) {
+    //   return 'serverError';
+    // }
+    } if (code >= 400 && code < 600) {
+      return 'testingConnectionError';
     }
     return 'default';
   };

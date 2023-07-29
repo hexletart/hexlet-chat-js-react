@@ -172,6 +172,7 @@ export default {
           clientError: 'An error has occurred in the application. Please try again later or contact support. Error code is',
           serverError: 'An error was received on the server side. Please try again a little later or contact support. Error code is',
           default: 'An unrecognized error has occurred. Please try again a little later or contact support.',
+          connection: 'Connection Error', // for tests
         },
       },
     },
