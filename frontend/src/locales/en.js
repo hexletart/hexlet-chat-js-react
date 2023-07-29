@@ -2,7 +2,7 @@ export default {
   translation: {
     appFrame: {
       navbar: {
-        appName: 'My first React App',
+        appName: 'Hexlet Chat', // My first React App
         buttons: {
           output: 'Output',
           switchLanguage: 'En/Ru',

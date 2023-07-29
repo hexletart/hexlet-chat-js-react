@@ -2,7 +2,7 @@ export default {
   translation: {
     appFrame: {
       navbar: {
-        appName: 'Моё первое приложение на Реакт',
+        appName: 'Hexlet Chat', // Моё первое приложение на Реакт
         buttons: {
           output: 'Выход',
           switchLanguage: 'Рус/Англ',
