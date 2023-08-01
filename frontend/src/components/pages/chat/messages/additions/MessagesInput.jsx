@@ -31,7 +31,7 @@ const MessagesInput = ({ channelId }) => {
         return (
           <Form onSubmit={handleSubmit} className="py-1 border rounded-2">
             <InputGroup>
-              <Form.Label htmlFor="formInputMessage" visuallyHidden>
+              <Form.Label aria-label={t('chatPage.authedChat.messages.form.input.ariaLabel')} htmlFor="formInputMessage" visuallyHidden>
                 Message
               </Form.Label>
               <Form.Control
@@ -46,7 +46,6 @@ const MessagesInput = ({ channelId }) => {
                 value={values.message}
                 onChange={handleChange}
                 // disabled={isBlocking}
-                aria-label={t('chatPage.authedChat.messages.form.input.ariaLabel')}
                 aria-describedby="message-input"
                 id="formInputMessage"
               />
