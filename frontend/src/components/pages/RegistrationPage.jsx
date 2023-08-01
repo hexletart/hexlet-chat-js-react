@@ -79,7 +79,7 @@ const RegistrationPage = () => {
               const status = error?.response.status ?? null;
               sendError(status);
             }
-          })
+          });
       }}
     >
       {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => {
