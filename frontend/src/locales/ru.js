@@ -104,7 +104,7 @@ export default {
           },
           form: {
             input: {
-              placeholder: 'Введите сообщение ...',
+              placeholder: 'Новое сообщение',
               ariaLabel: 'Новое сообщение',
             },
             button: {
