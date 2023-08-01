@@ -51,8 +51,6 @@ const AuthorizationPage = () => {
       onSubmit={(values, actions) => {
         setSubmitting(true);
         setAuthFailed(false);
-        console.log(values.userName.trim(), 'number 1');
-        console.log(values.password.trim(), 'number 2');
         axios.post(routes.loginPath, {
           username: values.userName.trim(),
           password: values.password.trim(),
@@ -60,11 +58,7 @@ const AuthorizationPage = () => {
 
           .then((response) => response.data)
           .then((data) => {
-            console.log('from try block !!!!!!!!');
             const { token, username } = data;
-
-            console.log('and bellow ', token, username);
-
             auth.login(JSON.stringify(token), username);
             navigate(paths.main);
           })
@@ -73,7 +67,6 @@ const AuthorizationPage = () => {
             actions.setSubmitting(false);
             applySetterAsync(setSubmitting, false, 1000);
             userNameRef.current.select();
-            console.log('from catch block !!!!!!!!');
             if (error.isAxiosError && error.response.status === 401) {
               setAuthFailed(true);
               applySetterAsync(setAuthFailed, false, 30000);
