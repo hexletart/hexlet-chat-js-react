@@ -37,9 +37,9 @@ const SuccessedChannels = () => {
     },
   } = useSelector((state) => state.channels);
 
-  const {
-    loadingStatus: { status: messagesStatus },
-  } = useSelector((state) => state.messages);
+  // const {
+  //   loadingStatus: { status: messagesStatus },
+  // } = useSelector((state) => state.messages);
 
   useEffect(() => {
     const notificationsData = { status: channelsStatus, type: channelsActionsType };
@@ -59,9 +59,13 @@ const SuccessedChannels = () => {
 
   const channelsNames = Object.values(channels).map(({ name }) => name);
 
-  const hasChannelDataSend = [channelsStatus, messagesStatus].includes('send');
-  const isAddingChannel = hasChannelDataSend && channelsActionsType === 'adding';
-  const isChangingChannel = hasChannelDataSend && ['renaming', 'removing'].includes(channelsActionsType);
+  // const hasChannelDataSend = [channelsStatus, messagesStatus].includes('send');
+  // const isAddingChannel = hasChannelDataSend && channelsActionsType === 'adding';
+  // const isChangingChannel = hasChannelDataSend && ['renaming', 'removing']
+  //   .includes(channelsActionsType);
+  const hasChannelDataSend = false;
+  const isAddingChannel = false;
+  const isChangingChannel = false;
 
   const [modalInfo, setModalInfo] = useState({ type: null, item: null });
   const hideModal = () => setModalInfo({ type: null, item: null });

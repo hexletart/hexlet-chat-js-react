@@ -40,7 +40,7 @@ const MessagesInput = ({ channelId, isBlocking }) => {
                 }}
                 value={values.message}
                 onChange={handleChange}
-                // disabled={isBlocking}
+                disabled={isBlocking}
                 aria-label={t('chatPage.authedChat.messages.form.input.ariaLabel')}
                 aria-describedby="message-input"
               />
@@ -49,7 +49,7 @@ const MessagesInput = ({ channelId, isBlocking }) => {
                 variant=""
                 id="message-input-button"
                 className="btn-group-vertical border-0"
-                // disabled={isDisabled}
+                disabled={isDisabled}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
