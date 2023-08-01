@@ -60,12 +60,14 @@ const RegistrationPage = () => {
           username: values.userName,
           password: values.password,
         })
+
           .then((response) => response.data)
           .then((data) => {
             const { token, username } = data;
             auth.login(JSON.stringify(token), username);
             navigate(paths.main);
           })
+
           .catch((error) => {
             actions.setSubmitting(false);
             applySetterAsync(setSubmitting, false, 1000);

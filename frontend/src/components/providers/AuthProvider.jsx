@@ -6,6 +6,12 @@ const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('userId'));
 
   const login = (token, userName) => {
+    console.log();
+    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    console.log('TOKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', token);
+    console.log('USERNAME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', userName);
+    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    console.log();
     localStorage.setItem('userId', token);
     localStorage.setItem('userName', userName);
     setLoggedIn(true);

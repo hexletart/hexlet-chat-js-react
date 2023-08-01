@@ -55,12 +55,14 @@ const AuthorizationPage = () => {
           username: values.userName.trim(),
           password: values.password.trim(),
         })
+
           .then((response) => response.data)
           .then((data) => {
             const { token, username } = data;
             auth.login(JSON.stringify(token), username);
             navigate(paths.main);
           })
+
           .catch((error) => {
             actions.setSubmitting(false);
             applySetterAsync(setSubmitting, false, 1000);
