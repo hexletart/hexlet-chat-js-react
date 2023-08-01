@@ -31,8 +31,11 @@ const MessagesInput = ({ channelId }) => {
         return (
           <Form onSubmit={handleSubmit} className="py-1 border rounded-2">
             <InputGroup>
+              <Form.Label htmlFor="formInputMessage" visuallyHidden>
+                Message
+              </Form.Label>
               <Form.Control
-                className="border-0 p-0 ps-2 form-control"
+                className="border-0 p-0 ps-2"
                 type="text"
                 name="message"
                 autoComplete="message"
@@ -45,13 +48,14 @@ const MessagesInput = ({ channelId }) => {
                 // disabled={isBlocking}
                 aria-label={t('chatPage.authedChat.messages.form.input.ariaLabel')}
                 aria-describedby="message-input"
+                id="formInputMessage"
               />
               <Button
                 type="submit"
                 variant=""
                 id="message-input-button"
                 className="btn-group-vertical border-0"
-                // disabled={isDisabled}
+              // disabled={isDisabled}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
