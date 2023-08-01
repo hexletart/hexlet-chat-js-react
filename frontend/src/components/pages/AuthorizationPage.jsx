@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
+import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
 
 import paths from '../../paths';
 import routes from '../../routes';
@@ -142,7 +142,29 @@ const AuthorizationPage = () => {
               >
                 {t('authorizationPage.card.body.submit')}
               </Button>
-              {authFailed && <div className="custom-invalid-tooltip">{t('authorizationPage.card.body.warnings.authFailed')}</div>}
+              <Overlay target={buttonRef.current} placement="bottom" show={authFailed}>
+                {({
+                  placement: _placement,
+                  arrowProps: _arrowProps,
+                  show: _show,
+                  popper: _popper,
+                  hasDoneInitialMeasure: _hasDoneInitialMeasure,
+                  ...props
+                }) => (
+                  <div
+                    {...props}
+                    className="position-absolute text-white rounded px-2 py-1"
+                    style={{
+                      backgroundColor: 'rgba(220,53,69,.9)',
+                      fontSize: '.875rem',
+                      marginTop: '0.1rem',
+                      ...props.style,
+                    }}
+                  >
+                    {t('authorizationPage.card.body.warnings.authFailed')}
+                  </div>
+                )}
+              </Overlay>
             </div>
           </Form>
         );
