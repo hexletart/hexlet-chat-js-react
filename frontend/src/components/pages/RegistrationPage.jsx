@@ -53,29 +53,31 @@ const RegistrationPage = () => {
         passwordConfirmation: '',
       }}
       validationSchema={loginSchema}
-      onSubmit={async (values, actions) => {
-        try {
-          setSubmitting(true);
-          setAuthFailed(false);
-          const { token, username } = await axios.post(routes.signingUpPath, {
-            username: values.userName,
-            password: values.password,
+      onSubmit={(values, actions) => {
+        setSubmitting(true);
+        setAuthFailed(false);
+        axios.post(routes.signingUpPath, {
+          username: values.userName,
+          password: values.password,
+        })
+          .then((response) => response.data)
+          .then((data) => {
+            const { token, username } = data;
+            auth.login(JSON.stringify(token), username);
+            navigate(paths.main);
           })
-            .then((response) => response.data);
-          auth.login(JSON.stringify(token), username);
-          navigate(paths.main);
-        } catch (error) {
-          actions.setSubmitting(false);
-          applySetterAsync(setSubmitting, false, 1000);
-          userNameRef.current.select();
-          if (error.isAxiosError && error.response.status === 409) {
-            setAuthFailed(true);
-            applySetterAsync(setAuthFailed, false, 30000);
-          } else {
-            const status = error?.response.status ?? null;
-            sendError(status);
-          }
-        }
+          .catch((error) => {
+            actions.setSubmitting(false);
+            applySetterAsync(setSubmitting, false, 1000);
+            userNameRef.current.select();
+            if (error.isAxiosError && error.response.status === 409) {
+              setAuthFailed(true);
+              applySetterAsync(setAuthFailed, false, 30000);
+            } else {
+              const status = error?.response.status ?? null;
+              sendError(status);
+            }
+          });
       }}
     >
       {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => {

@@ -48,31 +48,31 @@ const AuthorizationPage = () => {
         password: '',
       }}
       validationSchema={loginSchema}
-      onSubmit={async (values, actions) => {
-        try {
-          setSubmitting(true);
-          setAuthFailed(false);
-          const { token, username } = await axios.post(routes.loginPath, {
-            username: values.userName.trim(),
-            password: values.password.trim(),
+      onSubmit={(values, actions) => {
+        setSubmitting(true);
+        setAuthFailed(false);
+        axios.post(routes.loginPath, {
+          username: values.userName.trim(),
+          password: values.password.trim(),
+        })
+          .then((response) => response.data)
+          .then((data) => {
+            const { token, username } = data;
+            auth.login(JSON.stringify(token), username);
+            navigate(paths.main);
           })
-            .then((response) => response.data);
-          auth.login(JSON.stringify(token), username);
-          actions.setSubmitting(false);
-          navigate(paths.main);
-        } catch (error) {
-          actions.setSubmitting(false);
-          applySetterAsync(setSubmitting, false, 1000);
-          userNameRef.current.select();
-          if (error.isAxiosError && error.response.status === 401) {
-            setAuthFailed(true);
-            console.log('yes!!!!!!!!', authFailed);
-            // applySetterAsync(setAuthFailed, false, 30000);
-          } else {
-            const status = error?.response.status ?? null;
-            sendError(status);
-          }
-        }
+          .catch((error) => {
+            actions.setSubmitting(false);
+            applySetterAsync(setSubmitting, false, 1000);
+            userNameRef.current.select();
+            if (error.isAxiosError && error.response.status === 401) {
+              setAuthFailed(true);
+              applySetterAsync(setAuthFailed, false, 30000);
+            } else {
+              const status = error?.response.status ?? null;
+              sendError(status);
+            }
+          });
       }}
     >
       {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => {
