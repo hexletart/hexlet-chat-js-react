@@ -37,7 +37,6 @@ const Add = ({ onHide, schema }) => {
                 autoComplete="channelName"
                 placeholder={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder')}
                 ref={inputEl}
-                id="channelName"
                 value={values.channelName}
                 onChange={handleChange}
                 isValid={values.channelName.length > 0 && !errors.channelName}
