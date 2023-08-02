@@ -144,7 +144,7 @@ export default {
             },
             renaming: {
               buttonCancel: 'Отменить',
-              buttonSubmit: 'Переименовать',
+              buttonSubmit: 'Отправить',
             },
             removing: {
               buttonCancel: 'Отменить',
