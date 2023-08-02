@@ -31,9 +31,9 @@ const MessagesInput = ({ channelId }) => {
         return (
           <Form onSubmit={handleSubmit} className="py-1 border rounded-2">
             <InputGroup>
-              <Form.Label htmlFor="message" aria-label={t('chatPage.authedChat.messages.form.input.placeholder')} visuallyHidden>
+              <label className="visually-hidden" htmlFor="message" aria-label={t('chatPage.authedChat.messages.form.input.placeholder')}>
                 {t('chatPage.authedChat.messages.form.input.placeholder')}
-              </Form.Label>
+              </label>
               <Form.Control
                 id="message"
                 aria-label={t('chatPage.authedChat.messages.form.input.placeholder')}
