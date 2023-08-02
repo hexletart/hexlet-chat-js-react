@@ -25,9 +25,9 @@ const Add = ({ onHide, schema }) => {
     >
       {({ handleSubmit, handleChange, values, errors }) => (
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="channelName">
+          <Form.Group>
             <FloatingLabel
-              controlId="addChannelFloatingLabel"
+              controlId="channelName"
               label={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder')}
               className="mb-2 text-muted"
             >

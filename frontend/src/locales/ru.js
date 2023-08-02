@@ -127,7 +127,7 @@ export default {
                   notOneOf: 'Имя канала должно быть уникальным',
                   required: 'Обязательное поле',
                 },
-                placeholder: 'Введите название канала',
+                placeholder: 'Имя канала',
               },
             },
             text: {
