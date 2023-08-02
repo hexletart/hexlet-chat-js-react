@@ -30,8 +30,12 @@ const MessagesInput = ({ channelId }) => {
         // const isDisabled = (values.message.length === 0) || isBlocking;
         return (
           <Form onSubmit={handleSubmit} className="py-1 border rounded-2">
+            <Form.Label htmlFor="message" aria-label={t('chatPage.authedChat.messages.form.input.placeholder')} visuallyHidden>
+              {t('chatPage.authedChat.messages.form.input.placeholder')}
+            </Form.Label>
             <InputGroup>
               <Form.Control
+                id="mesage"
                 className="border-0 p-0 ps-2"
                 name="message"
                 autoComplete="message"
