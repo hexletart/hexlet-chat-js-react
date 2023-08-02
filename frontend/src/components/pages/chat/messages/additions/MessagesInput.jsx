@@ -46,7 +46,6 @@ const MessagesInput = ({ channelId }) => {
                 value={values.message}
                 onChange={handleChange}
                 // disabled={isBlocking}
-                aria-label={t('chatPage.authedChat.messages.form.input.placeholder')}
               />
               <Button
                 type="submit"
