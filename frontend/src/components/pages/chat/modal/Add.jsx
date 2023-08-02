@@ -59,7 +59,7 @@ const Add = ({ onHide, schema }) => {
   );
 
   return (
-    <Modal show onHide={onHide} backdrop="static">
+    <Modal show onHide={onHide} backdrop="static" restoreFocus>
       <Modal.Header closeButton>
         <Modal.Title>
           {t('chatPage.authedChat.modals.headers.adding')}
