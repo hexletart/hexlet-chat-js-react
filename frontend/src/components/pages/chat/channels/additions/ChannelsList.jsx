@@ -29,9 +29,11 @@ const ChannelsList = ({ onShow, isBlocking, isRelated, relatedId }) => {
           split
           variant={activeStatus ? 'success' : 'light'}
           className="rounded-0 flex-grow-0"
-          toggleLabel="Управление каналом"
-          id="Управление каналом"
-        />
+          id="dropdown-split-basic"
+        >
+          <span className="visually-hidden">Управление каналом</span>
+        </Dropdown.Toggle>
+
         <Dropdown.Menu>
           <Dropdown.Item disabled={isBlocking} onClick={() => onShow('renaming', item)}>
             {t('chatPage.authedChat.channels.buttons.channelMenu.renaming')}
