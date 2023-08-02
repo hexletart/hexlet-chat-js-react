@@ -129,7 +129,7 @@ export default {
                 },
                 placeholder: {
                   adding: 'Enter channel name',
-                  renaming: 'Rename',
+                  renaming: 'Enter channel name',
                 },
               },
             },

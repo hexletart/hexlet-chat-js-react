@@ -129,7 +129,7 @@ export default {
                 },
                 placeholder: {
                   adding: 'Имя канала',
-                  renaming: 'Переименовать',
+                  renaming: 'Имя канала',
                 },
               },
             },
