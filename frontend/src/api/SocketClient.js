@@ -1,13 +1,10 @@
 import { io } from 'socket.io-client';
 
-import WEB_SOCKET_HOST from '../utilities/config';
+// import WEB_SOCKET_HOST from '../utilities/config';
 
 export default class SocketClient {
   constructor() {
-    this.socket = io(
-      WEB_SOCKET_HOST,
-      { autoConnect: false },
-    );
+    this.socket = io();
     this.connected = false;
   }
 
