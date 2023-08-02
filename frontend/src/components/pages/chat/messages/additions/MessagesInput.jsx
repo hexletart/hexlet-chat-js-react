@@ -35,7 +35,7 @@ const MessagesInput = ({ channelId }) => {
                 {t('chatPage.authedChat.messages.form.input.placeholder')}
               </Form.Label>
               <Form.Control
-                id="mesage"
+                id="message"
                 className="border-0 p-0 ps-2"
                 name="message"
                 autoComplete="message"
