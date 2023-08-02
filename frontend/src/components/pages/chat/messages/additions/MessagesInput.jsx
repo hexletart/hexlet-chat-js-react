@@ -36,6 +36,7 @@ const MessagesInput = ({ channelId }) => {
               </Form.Label>
               <Form.Control
                 id="message"
+                aria-label={t('chatPage.authedChat.messages.form.input.placeholder')}
                 className="border-0 p-0 ps-2"
                 name="message"
                 autoComplete="message"
