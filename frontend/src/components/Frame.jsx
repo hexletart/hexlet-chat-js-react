@@ -13,9 +13,7 @@ const NavButtons = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const auth = useAuthHook();
-  const { used, setUsed, setLanguage } = useLeoProfanity();
-
-  setLanguage(i18n.language);
+  const { used, setUsed } = useLeoProfanity();
 
   const handleLogout = () => {
     dispatch(authedActions.loggedOut());
