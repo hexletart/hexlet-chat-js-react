@@ -78,7 +78,7 @@ const Frame = ({ children }) => {
       {children}
 
       <ToastContainer
-        autoClose={6000}
+        autoClose={2000}
         position="top-center"
       />
 
