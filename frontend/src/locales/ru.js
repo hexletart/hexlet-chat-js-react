@@ -157,9 +157,9 @@ export default {
     toasts: {
       channels: {
         successed: {
-          creating: 'Канал создан.',
-          renaming: 'Канал переименован.',
-          removing: 'Канал удален.',
+          creating: 'Канал создан',
+          renaming: 'Канал переименован',
+          removing: 'Канал удален',
         },
         send: {
           creating: 'Создание канала происходит дольше чем обычно. Пожалуйста подождите.',
