@@ -127,7 +127,10 @@ export default {
                   notOneOf: 'Channel name must be unique',
                   required: 'Required field',
                 },
-                placeholder: 'Enter channel name',
+                placeholder: {
+                  adding: 'Enter channel name',
+                  renaming: 'Rename',
+                },
               },
             },
             text: {

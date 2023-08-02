@@ -127,7 +127,10 @@ export default {
                   notOneOf: 'Имя канала должно быть уникальным',
                   required: 'Обязательное поле',
                 },
-                placeholder: 'Имя канала',
+                placeholder: {
+                  adding: 'Имя канала',
+                  renaming: 'Переименовать',
+                },
               },
             },
             text: {
