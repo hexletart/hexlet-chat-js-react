@@ -27,15 +27,15 @@ const Add = ({ onHide, schema }) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <FloatingLabel
-              controlId="channelName"
-              label={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder')}
+              controlId="channelNameToAdd"
+              label={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder.adding')}
               className="mb-2 text-muted"
             >
               <Form.Control
                 type="text"
                 name="channelName"
                 autoComplete="channelName"
-                placeholder={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder')}
+                placeholder={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder.adding')}
                 ref={inputEl}
                 value={values.channelName}
                 onChange={handleChange}

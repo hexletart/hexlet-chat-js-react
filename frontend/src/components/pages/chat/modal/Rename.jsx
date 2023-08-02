@@ -28,15 +28,15 @@ const Rename = ({ onHide, item, schema }) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="renameChannelFormGroup">
             <FloatingLabel
-              controlId="renameChannelFloatingLabel"
-              label={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder')}
+              controlId="channelNameToRename"
+              label={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder.renaming')}
               className="mb-2 text-muted"
             >
               <Form.Control
                 type="text"
                 name="channelName"
                 autoComplete="channelName"
-                placeholder={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder')}
+                placeholder={t('chatPage.authedChat.modals.content.form.addingAndRenaming.placeholder.renaming')}
                 ref={inputEl}
                 value={values.channelName}
                 onChange={handleChange}
