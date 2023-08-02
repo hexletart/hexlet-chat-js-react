@@ -24,7 +24,12 @@ const ChannelsList = ({ onShow, isBlocking, isRelated, relatedId }) => {
   const renderRemovableItem = (activeStatus, item) => {
     const menu = (
       <>
-        <Dropdown.Toggle disabled={isBlocking} split variant={activeStatus ? 'success' : 'light'} className="rounded-0 flex-grow-0" id="dropdown-split-basic" />
+        <Dropdown.Toggle
+          disabled={isBlocking}
+          split variant={activeStatus ? 'success' : 'light'}
+          className="rounded-0 flex-grow-0"
+          id="Управление каналом"
+        />
 
         <Dropdown.Menu>
           <Dropdown.Item disabled={isBlocking} onClick={() => onShow('renaming', item)}>
