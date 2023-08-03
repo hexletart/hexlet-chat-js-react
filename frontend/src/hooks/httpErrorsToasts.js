@@ -19,13 +19,10 @@ const useHttpErrorsToasts = () => {
       return 'informationalError';
     } if (code >= 300 && code < 400) {
       return 'redirectionError';
-    // } if (code >= 400 && code < 500) {
-    //   return 'clientError';
-    // } if (code >= 500 && code < 600) {
-    //   return 'serverError';
-    // }
-    } if (code >= 400 && code < 600) {
-      return 'testingConnectionError';
+    } if (code >= 400 && code < 500) {
+      return 'clientError';
+    } if (code >= 500 && code < 600) {
+      return 'serverError';
     }
     return 'default';
   };
