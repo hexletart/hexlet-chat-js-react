@@ -69,3 +69,4 @@ const socketMiddleware = (socket) => (store) => (next) => (action) => {
 };
 
 export default socketMiddleware;
+/* eslint-enable */
