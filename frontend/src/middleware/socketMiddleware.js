@@ -1,4 +1,4 @@
-/* eslint-disable functional/no-this-expressions */
+/* eslint-disable no-unused-expressions */
 import { actions as channelsActions } from '../slices/channelsSlice';
 import { actions as messagesActions } from '../slices/messagesSlice';
 
