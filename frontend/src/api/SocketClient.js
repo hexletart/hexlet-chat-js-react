@@ -1,5 +1,4 @@
-// eslint-disable no-class
-// elsint-disable no-this-expression
+/* eslint-disable */
 
 import { io } from 'socket.io-client';
 
