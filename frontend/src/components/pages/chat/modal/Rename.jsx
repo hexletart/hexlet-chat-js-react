@@ -2,7 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { Button, Modal, Form, FloatingLabel } from 'react-bootstrap';
+import {
+  Button, Modal, Form, FloatingLabel,
+} from 'react-bootstrap';
 
 import { actions as channelsActions } from '../../../../slices/channelsSlice';
 
@@ -24,7 +26,9 @@ const Rename = ({ onHide, item, schema }) => {
         onHide();
       }}
     >
-      {({ handleSubmit, handleChange, values, errors }) => (
+      {({
+        handleSubmit, handleChange, values, errors,
+      }) => (
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="renameChannelFormGroup">
             <FloatingLabel

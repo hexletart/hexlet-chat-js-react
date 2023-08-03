@@ -2,7 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
-import { Nav, Dropdown, ButtonGroup, Button } from 'react-bootstrap';
+import {
+  Nav, Dropdown, ButtonGroup, Button,
+} from 'react-bootstrap';
 
 import {
   selectors as channelsSelectors,
@@ -10,7 +12,9 @@ import {
 } from '../../../../../slices/channelsSlice';
 import SmallSpinner from './smallSpinner';
 
-const ChannelsList = ({ onShow, isBlocking, isRelated, relatedId }) => {
+const ChannelsList = ({
+  onShow, isBlocking, isRelated, relatedId,
+}) => {
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
   const { currentChannelId } = useSelector((state) => state.channels);

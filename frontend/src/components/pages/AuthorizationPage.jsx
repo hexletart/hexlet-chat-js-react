@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
+import {
+  Overlay, FloatingLabel, Form, Button, Card, Image, Container, Row, Col,
+} from 'react-bootstrap';
 
 import paths from '../../paths';
 import routes from '../../routes';
@@ -77,7 +79,9 @@ const AuthorizationPage = () => {
           });
       }}
     >
-      {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => {
+      {({
+        handleSubmit, handleChange, handleBlur, values, touched, errors,
+      }) => {
         const onChange = (value) => {
           setAuthFailed(false);
           return handleChange(value);
@@ -152,6 +156,7 @@ const AuthorizationPage = () => {
                   ...props
                 }) => (
                   <div
+                  // eslint-disable-next-line react/jsx-props-no-spreading
                     {...props}
                     className="position-absolute text-white rounded px-2 py-1"
                     style={{

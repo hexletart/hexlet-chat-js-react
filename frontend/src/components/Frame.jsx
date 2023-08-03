@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { ButtonToolbar, ButtonGroup, Container, Navbar, Button } from 'react-bootstrap';
+import {
+  ButtonToolbar, ButtonGroup, Container, Navbar, Button,
+} from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
 
 import { actions as authedActions } from '../slices/authedSlice';
