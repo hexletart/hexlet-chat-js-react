@@ -1,3 +1,6 @@
+// eslint-disable functional/no-class
+// elsint-disable functional/no-this-expression
+
 import { io } from 'socket.io-client';
 
 // import WEB_SOCKET_HOST from '../utilities/config';
