@@ -29,13 +29,9 @@ const MessagesInput = ({ channelId, isBlocking }) => {
         return (
           <Form onSubmit={handleSubmit} className="py-1 border rounded-2">
             <InputGroup>
-              <label className="visually-hidden" htmlFor="message" aria-label={t('chatPage.authedChat.messages.form.input.placeholder')}>
-                {t('chatPage.authedChat.messages.form.input.placeholder')}
-              </label>
               <Form.Control
-                id="message"
-                aria-label={t('chatPage.authedChat.messages.form.input.placeholder')}
-                className="border-0 p-0 ps-2"
+                className="border-0 p-0 ps-2 form-control"
+                type="text"
                 name="message"
                 autoComplete="message"
                 placeholder={t('chatPage.authedChat.messages.form.input.placeholder')}
@@ -45,6 +41,8 @@ const MessagesInput = ({ channelId, isBlocking }) => {
                 value={values.message}
                 onChange={handleChange}
                 disabled={isBlocking}
+                aria-label={t('chatPage.authedChat.messages.form.input.ariaLabel')}
+                aria-describedby="message-input"
               />
               <Button
                 type="submit"
