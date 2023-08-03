@@ -1,8 +1,5 @@
 /* eslint-disable */
-
 import { io } from 'socket.io-client';
-
-// import WEB_SOCKET_HOST from '../utilities/config';
 
 export default class SocketClient {
   constructor() {
