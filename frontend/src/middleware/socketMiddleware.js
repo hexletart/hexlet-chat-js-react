@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { actions as channelsActions } from '../slices/channelsSlice';
 import { actions as messagesActions } from '../slices/messagesSlice';
 
@@ -69,4 +68,3 @@ const socketMiddleware = (socket) => (store) => (next) => (action) => {
 };
 
 export default socketMiddleware;
-/* eslint-enable */
